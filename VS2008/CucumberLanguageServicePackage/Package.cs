@@ -52,7 +52,7 @@ namespace CucumberLanguageServices
     // package needs to have a valid load key (it can be requested at 
     // http://msdn.microsoft.com/vstudio/extend/). This attributes tells the shell that this 
     // package has a load key embedded in its resources.
-    [ProvideLoadKey("Standard", "1.0", "Cucumber", "CucumberLanguageServices", 104)]
+    [ProvideLoadKey("Standard", "1.0", "CucumberLanguageServicePackage", "LinkiT projects BV", 104)]
     [Guid(GuidList.guidIronyLanguageServicePkgString)]
     public sealed class Package : IronyPackage
     {
