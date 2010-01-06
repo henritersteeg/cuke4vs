@@ -97,7 +97,11 @@ namespace CucumberLanguageServices
                     // This is where you perform your syntax highlighting.
                     // Parse entire source as given in req.Text.
                     // Store results in the AuthoringScope object.
-                    AstNode node = (AstNode)parser.Parse(req.Text, req.FileName).Root.AstNode;
+                    var parseTree = parser.Parse(req.Text, req.FileName);
+                    if (parseTree == null || parseTree.Root == null)
+                        return null;
+
+                    var node = (AstNode)parseTree.Root.AstNode;
                     source.ParseResult = node;
 
                     // Used for brace matching.

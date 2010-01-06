@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Cucumber Language Service (VS 2008)" Language="1033" Version="0.0.1" Manufacturer="Henri ter Steeg" UpgradeCode="4A263005-A34C-4410-8B39-A82D08D7A0A9">
+  <Product Id="*" Name="Cucumber Language Service (VS 2008)" Language="1033" Version="0.0.2" Manufacturer="Henri ter Steeg" UpgradeCode="4A263005-A34C-4410-8B39-A82D08D7A0A9">
     <Package InstallerVersion="200" Compressed="yes" />
 
     <Media Id="1" Cabinet="data.cab" EmbedCab="yes" />
@@ -8,7 +8,7 @@
     <!-- Upgrade support -->
     <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
     <Upgrade Id="4A263005-A34C-4410-8B39-A82D08D7A0A9">
-      <UpgradeVersion Minimum="0.0.0" Maximum="0.0.0" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="yes" />
+      <UpgradeVersion Minimum="0.0.0" Maximum="0.0.2" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
     </Upgrade>
     <!-- end upgrade support -->
 

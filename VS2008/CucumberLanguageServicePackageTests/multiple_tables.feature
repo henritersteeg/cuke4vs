@@ -25,3 +25,8 @@ Feature: Addition
   Examples:
     | input_1 | input_2 | input_3 | button | output |
     | 1       | 2       | 3       | add    | 6      |
+    | 2       | 3       | 4       | ddf    | dsfd   |
+    
+  Scenario: bla
+     Given x
+     And   y
