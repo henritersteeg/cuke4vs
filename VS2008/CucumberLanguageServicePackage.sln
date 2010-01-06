@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CucumberLanguageServicePackage", "CucumberLanguageServicePackage\CucumberLanguageServicePackage.csproj", "{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CucumberLanguageServicePackageTests", "CucumberLanguageServicePackageTests\CucumberLanguageServicePackageTests.csproj", "{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixproj", "{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798} = {CC8CFB86-20DB-4E53-8051-2C76E4EA8798}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CC8CFB86-20DB-4E53-8051-2C76E4EA8798}.Release|x86.ActiveCfg = Release|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6A0FAD45-3253-4DE0-9430-C0BD6BCD9ED4}.Release|x86.ActiveCfg = Release|Any CPU
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Debug|x86.ActiveCfg = Debug|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Debug|x86.Build.0 = Debug|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Release|Any CPU.ActiveCfg = Release|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Release|x86.ActiveCfg = Release|x86
+		{16727BB2-C6E3-463A-AC43-8B8BFDB3438D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
