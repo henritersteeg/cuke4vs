@@ -1,14 +1,12 @@
+# cuke4vs
 Cuke4vs is a Cucumber language pack for Visual Studio. Currently it provides syntax highlighting for Cucumber feature files.
 
-Goal
-====
+## Goal
 The goal is to integrate with Cuke4Nuke by providing intellisense for existing step definitions and jumping to the source of these step definitions.
 
-How to install
-==============
+## How to install
 Go to the download section, install the latest MSI and you're done!
 
-NOTE
-----
+#### NOTE
 For some reason, the installation progress seems to halt for about 30 seconds, but after that it's ready instantly.
 
