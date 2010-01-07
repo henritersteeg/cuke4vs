@@ -13,8 +13,6 @@ namespace CucumberLanguageServicePackageTests
     [TestFixture]
     public class FeatureSpecTests : CucumberTestUtils
     {
-        private GherkinGrammar _grammar;
-        private Parser _parser;
 
         #region Comments
 
@@ -416,7 +414,6 @@ namespace CucumberLanguageServicePackageTests
             // Given
             _grammar = new GherkinGrammar();
             _parser = new Parser(_grammar);
-
         }
 
         private void ParseFile(string filename)
@@ -432,77 +429,6 @@ namespace CucumberLanguageServicePackageTests
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
         }
-
-        private int FeatureCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Feature).Count();
-        }
-
-        private int BackgroundCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Background).Count();
-        }
-
-        private int ScenarioCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Scenario).Count();
-        }
-
-        private int ScenarioOutlineCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.ScenarioOutline).Count();
-        }
-
-        private int ExamplesCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Examples).Count();
-        }
-
-        private int GivenCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Given).Count();
-        }
-
-        private int WhenCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.When).Count();
-        }
-
-        private int ThenCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.Then).Count();
-        }
-
-        private int ButCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.KeyTerm == _grammar.But).Count();
-        }
-
-        private int TagCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal == _grammar.Tag).Count();
-        }
-
-        private int ColumnNameCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal == _grammar.ColumnName).Count();
-        }
-
-        private int TableCellCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal == _grammar.TableCell).Count();
-        }
-
-        private int CommentCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Category == TokenCategory.Comment).Count();
-        }
-
-        private int PyStringCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal == _grammar.PyString).Count();
-        }
-
         #endregion
     }
 

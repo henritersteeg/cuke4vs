@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CucumberLanguageServices.CucumberLanguageService;
+﻿using CucumberLanguageServices.CucumberLanguageService;
+using CucumberLanguageServices.i18n;
 using Irony.Parsing;
 
 namespace CucumberLanguageServices
@@ -9,17 +7,15 @@ namespace CucumberLanguageServices
     [Language("Cucumber", "1.0", "Cucumber feature language")]
     public class GherkinGrammar : Grammar
     {
+        public NaturalLanguage Language { get; private set; }
+
         private static readonly CommentTerminal LineComment = new CommentTerminal("line-comment", "#", "\r", "\n", "\u2085", "\u2028", "\u2029");
 
         private const string IdentifierFirstChars =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]{}<>?/\\|\"\';`~!@#$%^&*(),.-_+=";
 
-        private const string IdentifierChars = IdentifierFirstChars + ": ";
-
         private readonly NonTerminal Behavior = new NonTerminal("behavior");
         private readonly NonTerminal Tags = new NonTerminal("tags");
-        private readonly NonTerminal TagLine = new NonTerminal("tag-line");
-        private readonly NonTerminal TagsOnLine = new NonTerminal("tags-on-line");
         private readonly NonTerminal FeatureLine = new NonTerminal("feature-line");
         private readonly NonTerminal Description = new NonTerminal("description");
         private readonly NonTerminal BackgroundClause = new NonTerminal("background-clause");
@@ -46,17 +42,6 @@ namespace CucumberLanguageServices
 
         public readonly Terminal DescriptiveLine = new GherkinIdentifier("descriptive-line");
 
-        public KeyTerm Feature { get; private set; }
-        public KeyTerm Background { get; private set; }
-        public KeyTerm Scenario { get; private set; }
-        public KeyTerm ScenarioOutline { get; private set; }
-        public KeyTerm Examples { get; private set; }
-        public KeyTerm Given { get; private set; }
-        public KeyTerm When { get; private set; }
-        public KeyTerm Then { get; private set; }
-        public KeyTerm And { get; private set; }
-        public KeyTerm But { get; private set; }
-
         public IdentifierTerminal Tag { get; private set; }
         public GherkinIdentifier Identifier { get; private set; }
 
@@ -65,6 +50,9 @@ namespace CucumberLanguageServices
 
         public GherkinGrammar()
         {
+            
+            Language = NaturalLanguageFactory.DEFAULT_LANGUAGE;
+
             DeclareTerminals();
 
             DeclareNonTerminals();
@@ -76,16 +64,6 @@ namespace CucumberLanguageServices
 
         private void DeclareTerminals()
         {
-            Feature = new KeyTerm("Feature", "Feature");
-            Background = new KeyTerm("Background", "Background");
-            Scenario = new KeyTerm("Scenario", "Scenario");
-            ScenarioOutline = new KeyTerm("Scenario Outline", "Scenario Outline");
-            Examples = new KeyTerm("Examples", "Examples");
-            Given = new KeyTerm("Given", "Given");
-            When = new KeyTerm("When", "When");
-            Then = new KeyTerm("Then", "Then");
-            And = new KeyTerm("And", "And");
-            But = new KeyTerm("But", "But");
             Identifier = new GherkinIdentifier("identifier");
             Tag = new IdentifierTerminal("tag") 
             {
@@ -108,29 +86,29 @@ namespace CucumberLanguageServices
 
             Tags.Rule = MakeStarRule(Tags, Tag);
 
-            FeatureLine.Rule = Feature + ":" + Identifier;
+            FeatureLine.Rule = Language.Feature + ":" + Identifier;
 
             Description.Rule = MakePlusRule(Description, DescriptiveLine);
 
             BackgroundClause.Rule = BackgroundLine + GivenWhenThenClause;
 
-            BackgroundLine.Rule = Background + ":" + Identifiers;
+            BackgroundLine.Rule = Language.Background + ":" + Identifiers;
 
             Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioClause | ScenarioOutlineClause));
 
             ScenarioOutlineClause.Rule = Tags + ScenarioOutlineLine + Identifiers + GivenWhenThenClause + ExamplesClause;
 
-            ScenarioOutlineLine.Rule = ScenarioOutline + ":" + Identifier;
+            ScenarioOutlineLine.Rule = Language.ScenarioOutline + ":" + Identifier;
 
-            ExamplesClause.Rule = Examples + ":" + Table;
+            ExamplesClause.Rule = Language.Examples + ":" + Table;
 
             ScenarioClause.Rule = Tags + ScenarioLine + Identifiers + GivenWhenThenClause;
 
-            ScenarioLine.Rule = Scenario + ":" + Identifier;
+            ScenarioLine.Rule = Language.Scenario + ":" + Identifier;
 
             GivenWhenThenClause.Rule = MakeStarRule(GivenWhenThenClause, GivenWhenThenLine);
 
-            GivenWhenThenLine.Rule = (Given | When | Then | And | But) + (Identifier | Identifier + MultilineArg);
+            GivenWhenThenLine.Rule = Language.Steps + (Identifier | Identifier + MultilineArg);
 
             MultilineArg.Rule = Table | PyString;
 

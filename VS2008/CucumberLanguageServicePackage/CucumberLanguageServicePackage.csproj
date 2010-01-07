@@ -53,12 +53,20 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Yaml, Version=1.0.2351.15274, Culture=neutral, PublicKeyToken=0788fe92405bb6fa">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Yaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="GherkinGrammar.cs" />
     <Compile Include="GherkinIdentifier.cs" />
+    <Compile Include="i18n\NaturalLanguage.cs" />
+    <Compile Include="i18n\NaturalLanguageText.cs" />
     <Compile Include="Guids.cs" />
+    <Compile Include="i18n\LanguageTokenizer.cs" />
+    <Compile Include="i18n\NaturalLanguageFactory.cs" />
     <Compile Include="Integration\AuthoringScope.cs" />
     <Compile Include="Integration\Configuration.cs" />
     <Compile Include="Integration\Declaration.cs" />
@@ -93,11 +101,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Irony.dll" />
-    <Content Include="Resources\Irony.GrammarExplorer.exe" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Key.snk" />
+    <None Include="languages.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <!--
