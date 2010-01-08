@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
-using Yaml;
 
 namespace CucumberLanguageServices.i18n
 {
-    public class NaturalLanguageFactory
+    public static class NaturalLanguageFactory
     {
         public static readonly NaturalLanguage DEFAULT_LANGUAGE = new NaturalLanguage(new NaturalLanguageText
                                                                                           {
@@ -24,15 +24,10 @@ namespace CucumberLanguageServices.i18n
                                                                                               But = "*|But"
                                                                                           });
 
-        public NaturalLanguageFactory()
+        public static NaturalLanguage GetLanguage(string key)
         {
+            var languageText = NaturalLanguageText.GetTextFor(key);
+            return languageText == null ? null : new NaturalLanguage(languageText);
         }
-
-        public NaturalLanguage GetLanguage(string key)
-        {
-
-            return DEFAULT_LANGUAGE;
-        }
-
     }
 }

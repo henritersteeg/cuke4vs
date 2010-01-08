@@ -46,19 +46,9 @@ namespace CucumberLanguageServicePackageTests
             return tokens.Where(token => token.Terminal.Name == "Examples").Count();
         }
 
-        protected int GivenCount(TokenList tokens)
+        protected int StepCount(TokenList tokens)
         {
-            return tokens.Where(token => token.Terminal.Name == "Given").Count();
-        }
-
-        protected int WhenCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal.Name == "When").Count();
-        }
-
-        protected int ThenCount(TokenList tokens)
-        {
-            return tokens.Where(token => token.Terminal.Name == "Then").Count();
+            return tokens.Where(token => token.Terminal.Name == "Step").Count();
         }
 
         protected int TagCount(TokenList tokens)

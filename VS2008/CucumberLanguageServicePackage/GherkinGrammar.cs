@@ -1,4 +1,6 @@
-﻿using CucumberLanguageServices.CucumberLanguageService;
+﻿using System;
+using System.Text.RegularExpressions;
+using CucumberLanguageServices.CucumberLanguageService;
 using CucumberLanguageServices.i18n;
 using Irony.Parsing;
 
@@ -48,10 +50,27 @@ namespace CucumberLanguageServices
         public readonly FreeTextLiteral ColumnName = new FreeTextLiteral("column-name", "|");
         public readonly FreeTextLiteral TableCell = new FreeTextLiteral("table-cell", "|");
 
-        public GherkinGrammar()
+        public static readonly Regex LanguageRegex = new Regex("^#\\s*language:\\s*([^\\s]+)\\s*\\n");
+
+        public static GherkinGrammar CreateFor(string sourceText)
         {
-            
-            Language = NaturalLanguageFactory.DEFAULT_LANGUAGE;
+            var match = LanguageRegex.Match(sourceText);
+            if (!match.Success)
+                return new GherkinGrammar();
+
+            var languageCode = match.Groups[1].Value;
+            var language = NaturalLanguageFactory.GetLanguage(languageCode);
+            return new GherkinGrammar(language);
+        }
+
+        public GherkinGrammar()
+            : this(NaturalLanguageFactory.DEFAULT_LANGUAGE)
+        {
+        }
+
+        public GherkinGrammar(NaturalLanguage language)
+        {
+            Language = language ?? NaturalLanguageFactory.DEFAULT_LANGUAGE;
 
             DeclareTerminals();
 
@@ -65,9 +84,10 @@ namespace CucumberLanguageServices
         private void DeclareTerminals()
         {
             Identifier = new GherkinIdentifier("identifier");
-            Tag = new IdentifierTerminal("tag") 
+            Tag = new IdentifierTerminal("tag")
             {
-                AllFirstChars = "@", AllChars = IdentifierFirstChars, 
+                AllFirstChars = "@",
+                AllChars = IdentifierFirstChars,
                 EditorInfo = new TokenEditorInfo(TokenType.Identifier, TokenColor.Number, TokenTriggers.None)
             };
             NonGrammarTerminals.Add(LineComment);

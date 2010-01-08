@@ -59,10 +59,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Yaml, Version=1.0.2351.15274, Culture=neutral, PublicKeyToken=0788fe92405bb6fa">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CucumberLanguageServicePackage\Resources\Yaml.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CucumberTestUtils.cs" />

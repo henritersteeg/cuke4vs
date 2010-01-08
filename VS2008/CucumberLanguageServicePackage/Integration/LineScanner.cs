@@ -14,8 +14,12 @@ namespace CucumberLanguageServices
 
         public LineScanner(GherkinGrammar GherkinGrammar)
         {
-            this.parser = new Parser(GherkinGrammar);
-            this.parser.Context.Mode = ParseMode.VsLineScan;
+            SetParser(GherkinGrammar);
+        }
+
+        private void SetParser(GherkinGrammar GherkinGrammar)
+        {
+            parser = new Parser(GherkinGrammar) {Context = {Mode = ParseMode.VsLineScan}};
         }
 
         public bool ScanTokenAndProvideInfoAboutIt(TokenInfo tokenInfo, ref int state)
@@ -57,6 +61,7 @@ namespace CucumberLanguageServices
 
         public void SetSource(string source, int offset)
         {
+            SetParser(GherkinGrammar.CreateFor(source));
             // Stores line of source to be used by ScanTokenAndProvideInfoAboutIt.
             parser.Scanner.VsSetSource(source, offset);
         }

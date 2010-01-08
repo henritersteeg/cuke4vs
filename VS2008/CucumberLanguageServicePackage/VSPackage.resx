@@ -126,8 +126,4 @@
   <data name="112" xml:space="preserve">
     <value>Cucumber feature language</value>
   </data>
-    <data name="nl_feature" xml:space="preserve">
-    <value><![CDATA[Functionaliteit]]></value>
-  </data>
-
 </root>

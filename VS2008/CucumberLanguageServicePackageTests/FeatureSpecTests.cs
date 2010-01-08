@@ -141,7 +141,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         #endregion
@@ -186,7 +186,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         [Test]
@@ -200,7 +200,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         [Test]
@@ -214,7 +214,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ColumnNameCount(tokens), Is.EqualTo(2), "columnNames");
         }
 
@@ -229,7 +229,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(PyStringCount(tokens), Is.EqualTo(1), "pyString");
         }
 
@@ -244,7 +244,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         [Test]
@@ -258,7 +258,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         #endregion
@@ -276,7 +276,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioOutlineCount(tokens), Is.EqualTo(1), "ScenarioOutline");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ExamplesCount(tokens), Is.EqualTo(1), "Examples");
         }
 
@@ -291,7 +291,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioOutlineCount(tokens), Is.EqualTo(1), "ScenarioOutline");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ExamplesCount(tokens), Is.EqualTo(1), "Examples");
             Assert.That(ColumnNameCount(tokens), Is.EqualTo(4), "Column names");
         }
@@ -307,7 +307,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioOutlineCount(tokens), Is.EqualTo(1), "ScenarioOutline");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ExamplesCount(tokens), Is.EqualTo(1), "Examples");
             Assert.That(ColumnNameCount(tokens), Is.EqualTo(4), "Column names");
         }
@@ -323,7 +323,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioOutlineCount(tokens), Is.EqualTo(1), "Scenario Outline");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
         }
 
         #endregion
@@ -382,7 +382,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ColumnNameCount(tokens), Is.EqualTo(2), "ColumnNames");
             Assert.That(TableCellCount(tokens), Is.EqualTo(4), "TableCells");
         }
@@ -399,7 +399,7 @@ namespace CucumberLanguageServicePackageTests
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(ColumnNameCount(tokens), Is.EqualTo(2), "ColumnNames");
             Assert.That(TableCellCount(tokens), Is.EqualTo(4), "TableCells");
         }

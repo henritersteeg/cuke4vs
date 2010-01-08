@@ -1,0 +1,1501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data xml:space="preserve" name="it_name">
+    <value>Italian</value>
+  </data>
+  <data xml:space="preserve" name="it_native">
+    <value>italiano</value>
+  </data>
+  <data xml:space="preserve" name="it_feature">
+    <value>Funzionalit&#224;</value>
+  </data>
+  <data xml:space="preserve" name="it_background">
+    <value>Contesto</value>
+  </data>
+  <data xml:space="preserve" name="it_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="it_scenario_outline">
+    <value>Schema dello scenario</value>
+  </data>
+  <data xml:space="preserve" name="it_examples">
+    <value>Esempi</value>
+  </data>
+  <data xml:space="preserve" name="it_given">
+    <value>*|Dato</value>
+  </data>
+  <data xml:space="preserve" name="it_when">
+    <value>*|Quando</value>
+  </data>
+  <data xml:space="preserve" name="it_then">
+    <value>*|Allora</value>
+  </data>
+  <data xml:space="preserve" name="it_and">
+    <value>*|E</value>
+  </data>
+  <data xml:space="preserve" name="it_but">
+    <value>*|Ma</value>
+  </data>
+  <data xml:space="preserve" name="cy_name">
+    <value>Welsh</value>
+  </data>
+  <data xml:space="preserve" name="cy_native">
+    <value>Cymraeg</value>
+  </data>
+  <data xml:space="preserve" name="cy_feature">
+    <value>Arwedd</value>
+  </data>
+  <data xml:space="preserve" name="cy_background">
+    <value>Cefndir</value>
+  </data>
+  <data xml:space="preserve" name="cy_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="cy_scenario_outline">
+    <value>Scenario Amlinellol</value>
+  </data>
+  <data xml:space="preserve" name="cy_examples">
+    <value>Enghreifftiau</value>
+  </data>
+  <data xml:space="preserve" name="cy_given">
+    <value>*|anrhegedig a</value>
+  </data>
+  <data xml:space="preserve" name="cy_when">
+    <value>*|Pryd</value>
+  </data>
+  <data xml:space="preserve" name="cy_then">
+    <value>*|Yna</value>
+  </data>
+  <data xml:space="preserve" name="cy_and">
+    <value>*|A</value>
+  </data>
+  <data xml:space="preserve" name="cy_but">
+    <value>*|Ond</value>
+  </data>
+  <data xml:space="preserve" name="cat_name">
+    <value>Catalan</value>
+  </data>
+  <data xml:space="preserve" name="cat_native">
+    <value>catal&#224;</value>
+  </data>
+  <data xml:space="preserve" name="cat_feature">
+    <value>Caracter&#237;stica</value>
+  </data>
+  <data xml:space="preserve" name="cat_background">
+    <value>Rerefons|Antecedents</value>
+  </data>
+  <data xml:space="preserve" name="cat_scenario">
+    <value>Escenari</value>
+  </data>
+  <data xml:space="preserve" name="cat_scenario_outline">
+    <value>Esquema de l'escenari</value>
+  </data>
+  <data xml:space="preserve" name="cat_examples">
+    <value>Exemples</value>
+  </data>
+  <data xml:space="preserve" name="cat_given">
+    <value>*|Donat|Donada</value>
+  </data>
+  <data xml:space="preserve" name="cat_when">
+    <value>*|Quan</value>
+  </data>
+  <data xml:space="preserve" name="cat_then">
+    <value>*|Aleshores</value>
+  </data>
+  <data xml:space="preserve" name="cat_and">
+    <value>*|I</value>
+  </data>
+  <data xml:space="preserve" name="cat_but">
+    <value>*|Per&#242;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_name">
+    <value>Chinese simplified</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_native">
+    <value>&#31616;&#20307;&#20013;&#25991;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_feature">
+    <value>&#21151;&#33021;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_background">
+    <value>&#32972;&#26223;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_scenario">
+    <value>&#22330;&#26223;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_scenario_outline">
+    <value>&#22330;&#26223;&#22823;&#32434;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_examples">
+    <value>&#20363;&#23376;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_given">
+    <value>*|&#20551;&#22914;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_when">
+    <value>*|&#24403;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_then">
+    <value>*|&#37027;&#20040;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_and">
+    <value>*|&#32780;&#19988;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-CN_but">
+    <value>*|&#20294;&#26159;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="no_name">
+    <value>Norwegian</value>
+  </data>
+  <data xml:space="preserve" name="no_native">
+    <value>norsk</value>
+  </data>
+  <data xml:space="preserve" name="no_feature">
+    <value>Egenskap</value>
+  </data>
+  <data xml:space="preserve" name="no_background">
+    <value>Bakgrunn</value>
+  </data>
+  <data xml:space="preserve" name="no_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="no_scenario_outline">
+    <value>Abstrakt Scenario</value>
+  </data>
+  <data xml:space="preserve" name="no_examples">
+    <value>Eksempler</value>
+  </data>
+  <data xml:space="preserve" name="no_given">
+    <value>*|Gitt</value>
+  </data>
+  <data xml:space="preserve" name="no_when">
+    <value>*|N&#229;r</value>
+  </data>
+  <data xml:space="preserve" name="no_then">
+    <value>*|S&#229;</value>
+  </data>
+  <data xml:space="preserve" name="no_and">
+    <value>*|Og</value>
+  </data>
+  <data xml:space="preserve" name="no_but">
+    <value>*|Men</value>
+  </data>
+  <data xml:space="preserve" name="ja_name">
+    <value>Japanese</value>
+  </data>
+  <data xml:space="preserve" name="ja_native">
+    <value>&#26085;&#26412;&#35486;</value>
+  </data>
+  <data xml:space="preserve" name="ja_feature">
+    <value>&#12501;&#12451;&#12540;&#12481;&#12515;|&#27231;&#33021;</value>
+  </data>
+  <data xml:space="preserve" name="ja_background">
+    <value>&#32972;&#26223;</value>
+  </data>
+  <data xml:space="preserve" name="ja_scenario">
+    <value>&#12471;&#12490;&#12522;&#12458;</value>
+  </data>
+  <data xml:space="preserve" name="ja_scenario_outline">
+    <value>&#12471;&#12490;&#12522;&#12458;&#12450;&#12454;&#12488;&#12521;&#12452;&#12531;|&#12471;&#12490;&#12522;&#12458;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;|&#12486;&#12531;&#12503;&#12524;|&#12471;&#12490;&#12522;&#12458;&#12486;&#12531;&#12503;&#12524;</value>
+  </data>
+  <data xml:space="preserve" name="ja_examples">
+    <value>&#20363;|&#12469;&#12531;&#12503;&#12523;</value>
+  </data>
+  <data xml:space="preserve" name="ja_given">
+    <value>*|&#21069;&#25552;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ja_when">
+    <value>*|&#12418;&#12375;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ja_then">
+    <value>*|&#12394;&#12425;&#12400;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ja_and">
+    <value>*|&#12363;&#12388;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ja_but">
+    <value>*|&#12375;&#12363;&#12375;&lt;|&#20294;&#12375;&lt;|&#12383;&#12384;&#12375;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="fr_name">
+    <value>French</value>
+  </data>
+  <data xml:space="preserve" name="fr_native">
+    <value>fran&#231;ais</value>
+  </data>
+  <data xml:space="preserve" name="fr_feature">
+    <value>Fonctionnalit&#233;</value>
+  </data>
+  <data xml:space="preserve" name="fr_background">
+    <value>Contexte</value>
+  </data>
+  <data xml:space="preserve" name="fr_scenario">
+    <value>Sc&#233;nario</value>
+  </data>
+  <data xml:space="preserve" name="fr_scenario_outline">
+    <value>Plan du sc&#233;nario|Plan du Sc&#233;nario</value>
+  </data>
+  <data xml:space="preserve" name="fr_examples">
+    <value>Exemples</value>
+  </data>
+  <data xml:space="preserve" name="fr_given">
+    <value>*|Soit|Etant donn&#233;</value>
+  </data>
+  <data xml:space="preserve" name="fr_when">
+    <value>*|Quand|Lorsque|Lorsqu'&lt;</value>
+  </data>
+  <data xml:space="preserve" name="fr_then">
+    <value>*|Alors</value>
+  </data>
+  <data xml:space="preserve" name="fr_and">
+    <value>*|Et</value>
+  </data>
+  <data xml:space="preserve" name="fr_but">
+    <value>*|Mais</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_name">
+    <value>Texan</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_native">
+    <value>Texan</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_feature">
+    <value>Feature</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_background">
+    <value>Background</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_scenario_outline">
+    <value>All y'all</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_examples">
+    <value>Examples</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_given">
+    <value>*|Given y'all</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_when">
+    <value>*|When y'all</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_then">
+    <value>*|Then y'all</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_and">
+    <value>*|And y'all</value>
+  </data>
+  <data xml:space="preserve" name="en-tx_but">
+    <value>*|But y'all</value>
+  </data>
+  <data xml:space="preserve" name="de_name">
+    <value>German</value>
+  </data>
+  <data xml:space="preserve" name="de_native">
+    <value>Deutsch</value>
+  </data>
+  <data xml:space="preserve" name="de_feature">
+    <value>Funktionalit&#228;t</value>
+  </data>
+  <data xml:space="preserve" name="de_background">
+    <value>Grundlage</value>
+  </data>
+  <data xml:space="preserve" name="de_scenario">
+    <value>Szenario</value>
+  </data>
+  <data xml:space="preserve" name="de_scenario_outline">
+    <value>Szenariogrundriss</value>
+  </data>
+  <data xml:space="preserve" name="de_examples">
+    <value>Beispiele</value>
+  </data>
+  <data xml:space="preserve" name="de_given">
+    <value>*|Gegeben sei</value>
+  </data>
+  <data xml:space="preserve" name="de_when">
+    <value>*|Wenn</value>
+  </data>
+  <data xml:space="preserve" name="de_then">
+    <value>*|Dann</value>
+  </data>
+  <data xml:space="preserve" name="de_and">
+    <value>*|Und</value>
+  </data>
+  <data xml:space="preserve" name="de_but">
+    <value>*|Aber</value>
+  </data>
+  <data xml:space="preserve" name="sk_name">
+    <value>Slovak</value>
+  </data>
+  <data xml:space="preserve" name="sk_native">
+    <value>Slovensky</value>
+  </data>
+  <data xml:space="preserve" name="sk_feature">
+    <value>Po&#382;iadavka</value>
+  </data>
+  <data xml:space="preserve" name="sk_background">
+    <value>Pozadie</value>
+  </data>
+  <data xml:space="preserve" name="sk_scenario">
+    <value>Scen&#225;r</value>
+  </data>
+  <data xml:space="preserve" name="sk_scenario_outline">
+    <value>N&#225;&#269;rt Scen&#225;ru</value>
+  </data>
+  <data xml:space="preserve" name="sk_examples">
+    <value>Pr&#237;klady</value>
+  </data>
+  <data xml:space="preserve" name="sk_given">
+    <value>*|Pokia&#318;</value>
+  </data>
+  <data xml:space="preserve" name="sk_when">
+    <value>*|Ke&#271;</value>
+  </data>
+  <data xml:space="preserve" name="sk_then">
+    <value>*|Tak</value>
+  </data>
+  <data xml:space="preserve" name="sk_and">
+    <value>*|A</value>
+  </data>
+  <data xml:space="preserve" name="sk_but">
+    <value>*|Ale</value>
+  </data>
+  <data xml:space="preserve" name="hu_name">
+    <value>Hungarian</value>
+  </data>
+  <data xml:space="preserve" name="hu_native">
+    <value>magyar</value>
+  </data>
+  <data xml:space="preserve" name="hu_feature">
+    <value>Jellemz&#337;</value>
+  </data>
+  <data xml:space="preserve" name="hu_background">
+    <value>H&#225;tt&#233;r</value>
+  </data>
+  <data xml:space="preserve" name="hu_scenario">
+    <value>Forgat&#243;k&#246;nyv</value>
+  </data>
+  <data xml:space="preserve" name="hu_scenario_outline">
+    <value>Forgat&#243;k&#246;nyv v&#225;zlat</value>
+  </data>
+  <data xml:space="preserve" name="hu_examples">
+    <value>P&#233;ld&#225;k</value>
+  </data>
+  <data xml:space="preserve" name="hu_given">
+    <value>*|Ha</value>
+  </data>
+  <data xml:space="preserve" name="hu_when">
+    <value>*|Majd</value>
+  </data>
+  <data xml:space="preserve" name="hu_then">
+    <value>*|Akkor</value>
+  </data>
+  <data xml:space="preserve" name="hu_and">
+    <value>*|&#201;s</value>
+  </data>
+  <data xml:space="preserve" name="hu_but">
+    <value>*|De</value>
+  </data>
+  <data xml:space="preserve" name="ru_name">
+    <value>Russian</value>
+  </data>
+  <data xml:space="preserve" name="ru_native">
+    <value>&#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</value>
+  </data>
+  <data xml:space="preserve" name="ru_feature">
+    <value>&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;</value>
+  </data>
+  <data xml:space="preserve" name="ru_background">
+    <value>&#1055;&#1088;&#1077;&#1076;&#1099;&#1089;&#1090;&#1086;&#1088;&#1080;&#1103;</value>
+  </data>
+  <data xml:space="preserve" name="ru_scenario">
+    <value>&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1081;</value>
+  </data>
+  <data xml:space="preserve" name="ru_scenario_outline">
+    <value>&#1057;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1072; &#1089;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1103;</value>
+  </data>
+  <data xml:space="preserve" name="ru_examples">
+    <value>&#1047;&#1085;&#1072;&#1095;&#1077;&#1085;&#1080;&#1103;</value>
+  </data>
+  <data xml:space="preserve" name="ru_given">
+    <value>*|&#1044;&#1086;&#1087;&#1091;&#1089;&#1090;&#1080;&#1084;</value>
+  </data>
+  <data xml:space="preserve" name="ru_when">
+    <value>*|&#1045;&#1089;&#1083;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="ru_then">
+    <value>*|&#1058;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="ru_and">
+    <value>*|&#1048;|&#1050; &#1090;&#1086;&#1084;&#1091; &#1078;&#1077;</value>
+  </data>
+  <data xml:space="preserve" name="ru_but">
+    <value>*|&#1053;&#1086;|&#1040;</value>
+  </data>
+  <data xml:space="preserve" name="fi_name">
+    <value>Finnish</value>
+  </data>
+  <data xml:space="preserve" name="fi_native">
+    <value>suomi</value>
+  </data>
+  <data xml:space="preserve" name="fi_feature">
+    <value>Ominaisuus</value>
+  </data>
+  <data xml:space="preserve" name="fi_background">
+    <value>Tausta</value>
+  </data>
+  <data xml:space="preserve" name="fi_scenario">
+    <value>Tapaus</value>
+  </data>
+  <data xml:space="preserve" name="fi_scenario_outline">
+    <value>Tapausaihio</value>
+  </data>
+  <data xml:space="preserve" name="fi_examples">
+    <value>Tapaukset</value>
+  </data>
+  <data xml:space="preserve" name="fi_given">
+    <value>*|Oletetaan</value>
+  </data>
+  <data xml:space="preserve" name="fi_when">
+    <value>*|Kun</value>
+  </data>
+  <data xml:space="preserve" name="fi_then">
+    <value>*|Niin</value>
+  </data>
+  <data xml:space="preserve" name="fi_and">
+    <value>*|Ja</value>
+  </data>
+  <data xml:space="preserve" name="fi_but">
+    <value>*|Mutta</value>
+  </data>
+  <data xml:space="preserve" name="es_name">
+    <value>Spanish</value>
+  </data>
+  <data xml:space="preserve" name="es_native">
+    <value>espa&#241;ol</value>
+  </data>
+  <data xml:space="preserve" name="es_feature">
+    <value>Caracter&#237;stica</value>
+  </data>
+  <data xml:space="preserve" name="es_background">
+    <value>Antecedentes</value>
+  </data>
+  <data xml:space="preserve" name="es_scenario">
+    <value>Escenario</value>
+  </data>
+  <data xml:space="preserve" name="es_scenario_outline">
+    <value>Esquema del escenario</value>
+  </data>
+  <data xml:space="preserve" name="es_examples">
+    <value>Ejemplos</value>
+  </data>
+  <data xml:space="preserve" name="es_given">
+    <value>*|Dado</value>
+  </data>
+  <data xml:space="preserve" name="es_when">
+    <value>*|Cuando</value>
+  </data>
+  <data xml:space="preserve" name="es_then">
+    <value>*|Entonces</value>
+  </data>
+  <data xml:space="preserve" name="es_and">
+    <value>*|Y</value>
+  </data>
+  <data xml:space="preserve" name="es_but">
+    <value>*|Pero</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_name">
+    <value>Chinese traditional</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_native">
+    <value>&#32321;&#39636;&#20013;&#25991;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_feature">
+    <value>&#21151;&#33021;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_background">
+    <value>&#32972;&#26223;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_scenario">
+    <value>&#22580;&#26223;|&#21127;&#26412;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_scenario_outline">
+    <value>&#22580;&#26223;&#22823;&#32177;|&#21127;&#26412;&#22823;&#32177;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_examples">
+    <value>&#20363;&#23376;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_given">
+    <value>*|&#20551;&#35373;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_when">
+    <value>*|&#30070;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_then">
+    <value>*|&#37027;&#40636;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_and">
+    <value>*|&#32780;&#19988;&lt;|&#20006;&#19988;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="zh-TW_but">
+    <value>*|&#20294;&#26159;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="pt_name">
+    <value>Portuguese</value>
+  </data>
+  <data xml:space="preserve" name="pt_native">
+    <value>portugu&#234;s</value>
+  </data>
+  <data xml:space="preserve" name="pt_feature">
+    <value>Funcionalidade</value>
+  </data>
+  <data xml:space="preserve" name="pt_background">
+    <value>Contexto</value>
+  </data>
+  <data xml:space="preserve" name="pt_scenario">
+    <value>Cen&#225;rio|Cenario</value>
+  </data>
+  <data xml:space="preserve" name="pt_scenario_outline">
+    <value>Esquema do Cen&#225;rio|Esquema do Cenario</value>
+  </data>
+  <data xml:space="preserve" name="pt_examples">
+    <value>Exemplos</value>
+  </data>
+  <data xml:space="preserve" name="pt_given">
+    <value>*|Dado</value>
+  </data>
+  <data xml:space="preserve" name="pt_when">
+    <value>*|Quando</value>
+  </data>
+  <data xml:space="preserve" name="pt_then">
+    <value>*|Ent&#227;o|Entao</value>
+  </data>
+  <data xml:space="preserve" name="pt_and">
+    <value>*|E</value>
+  </data>
+  <data xml:space="preserve" name="pt_but">
+    <value>*|Mas</value>
+  </data>
+  <data xml:space="preserve" name="ko_name">
+    <value>Korean</value>
+  </data>
+  <data xml:space="preserve" name="ko_native">
+    <value>&#54620;&#44397;&#50612;</value>
+  </data>
+  <data xml:space="preserve" name="ko_feature">
+    <value>&#44592;&#45733;</value>
+  </data>
+  <data xml:space="preserve" name="ko_background">
+    <value>&#48176;&#44221;</value>
+  </data>
+  <data xml:space="preserve" name="ko_scenario">
+    <value>&#49884;&#45208;&#47532;&#50724;</value>
+  </data>
+  <data xml:space="preserve" name="ko_scenario_outline">
+    <value>&#49884;&#45208;&#47532;&#50724; &#44060;&#50836;</value>
+  </data>
+  <data xml:space="preserve" name="ko_examples">
+    <value>&#50696;</value>
+  </data>
+  <data xml:space="preserve" name="ko_given">
+    <value>*|&#51312;&#44148;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ko_when">
+    <value>*|&#47564;&#51068;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ko_then">
+    <value>*|&#44536;&#47084;&#47732;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ko_and">
+    <value>*|&#44536;&#47532;&#44256;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="ko_but">
+    <value>*|&#54616;&#51648;&#47564;&lt;</value>
+  </data>
+  <data xml:space="preserve" name="et_name">
+    <value>Estonian</value>
+  </data>
+  <data xml:space="preserve" name="et_native">
+    <value>eesti keel</value>
+  </data>
+  <data xml:space="preserve" name="et_feature">
+    <value>Omadus</value>
+  </data>
+  <data xml:space="preserve" name="et_background">
+    <value>Taust</value>
+  </data>
+  <data xml:space="preserve" name="et_scenario">
+    <value>Stsenaarium</value>
+  </data>
+  <data xml:space="preserve" name="et_scenario_outline">
+    <value>Raamstsenaarium</value>
+  </data>
+  <data xml:space="preserve" name="et_examples">
+    <value>Juhtumid</value>
+  </data>
+  <data xml:space="preserve" name="et_given">
+    <value>*|Eeldades</value>
+  </data>
+  <data xml:space="preserve" name="et_when">
+    <value>*|Kui</value>
+  </data>
+  <data xml:space="preserve" name="et_then">
+    <value>*|Siis</value>
+  </data>
+  <data xml:space="preserve" name="et_and">
+    <value>*|Ja</value>
+  </data>
+  <data xml:space="preserve" name="et_but">
+    <value>*|Kuid</value>
+  </data>
+  <data xml:space="preserve" name="uz_name">
+    <value>Uzbek</value>
+  </data>
+  <data xml:space="preserve" name="uz_native">
+    <value>&#1059;&#1079;&#1073;&#1077;&#1082;&#1095;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="uz_feature">
+    <value>&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;</value>
+  </data>
+  <data xml:space="preserve" name="uz_background">
+    <value>&#1058;&#1072;&#1088;&#1080;&#1093;</value>
+  </data>
+  <data xml:space="preserve" name="uz_scenario">
+    <value>&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1081;</value>
+  </data>
+  <data xml:space="preserve" name="uz_scenario_outline">
+    <value>&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1081; &#1089;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1072;&#1089;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="uz_examples">
+    <value>&#1052;&#1080;&#1089;&#1086;&#1083;&#1083;&#1072;&#1088;</value>
+  </data>
+  <data xml:space="preserve" name="uz_given">
+    <value>*|&#1040;&#1075;&#1072;&#1088;</value>
+  </data>
+  <data xml:space="preserve" name="uz_when">
+    <value>*|&#1040;&#1075;&#1072;&#1088;</value>
+  </data>
+  <data xml:space="preserve" name="uz_then">
+    <value>*|&#1059;&#1085;&#1076;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="uz_and">
+    <value>*|&#1042;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="uz_but">
+    <value>*|&#1051;&#1077;&#1082;&#1080;&#1085;|&#1041;&#1080;&#1088;&#1086;&#1082;|&#1040;&#1084;&#1084;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="id_name">
+    <value>Indonesian</value>
+  </data>
+  <data xml:space="preserve" name="id_native">
+    <value>Bahasa Indonesia</value>
+  </data>
+  <data xml:space="preserve" name="id_feature">
+    <value>Fitur</value>
+  </data>
+  <data xml:space="preserve" name="id_background">
+    <value>Dasar</value>
+  </data>
+  <data xml:space="preserve" name="id_scenario">
+    <value>Skenario</value>
+  </data>
+  <data xml:space="preserve" name="id_scenario_outline">
+    <value>Skenario konsep</value>
+  </data>
+  <data xml:space="preserve" name="id_examples">
+    <value>Contoh</value>
+  </data>
+  <data xml:space="preserve" name="id_given">
+    <value>*|Dengan</value>
+  </data>
+  <data xml:space="preserve" name="id_when">
+    <value>*|Ketika</value>
+  </data>
+  <data xml:space="preserve" name="id_then">
+    <value>*|Maka</value>
+  </data>
+  <data xml:space="preserve" name="id_and">
+    <value>*|Dan</value>
+  </data>
+  <data xml:space="preserve" name="id_but">
+    <value>*|Tapi</value>
+  </data>
+  <data xml:space="preserve" name="cs_name">
+    <value>Czech</value>
+  </data>
+  <data xml:space="preserve" name="cs_native">
+    <value>&#268;esky</value>
+  </data>
+  <data xml:space="preserve" name="cs_feature">
+    <value>Po&#382;adavek</value>
+  </data>
+  <data xml:space="preserve" name="cs_background">
+    <value>Pozad&#237;|Kontext</value>
+  </data>
+  <data xml:space="preserve" name="cs_scenario">
+    <value>Sc&#233;n&#225;&#345;</value>
+  </data>
+  <data xml:space="preserve" name="cs_scenario_outline">
+    <value>N&#225;&#269;rt Sc&#233;n&#225;&#345;e|Osnova sc&#233;n&#225;&#345;e</value>
+  </data>
+  <data xml:space="preserve" name="cs_examples">
+    <value>P&#345;&#237;klady</value>
+  </data>
+  <data xml:space="preserve" name="cs_given">
+    <value>*|Pokud</value>
+  </data>
+  <data xml:space="preserve" name="cs_when">
+    <value>*|Kdy&#382;</value>
+  </data>
+  <data xml:space="preserve" name="cs_then">
+    <value>*|Pak</value>
+  </data>
+  <data xml:space="preserve" name="cs_and">
+    <value>*|A|A tak&#233;</value>
+  </data>
+  <data xml:space="preserve" name="cs_but">
+    <value>*|Ale</value>
+  </data>
+  <data xml:space="preserve" name="bg_name">
+    <value>Bulgarian</value>
+  </data>
+  <data xml:space="preserve" name="bg_native">
+    <value>&#1073;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="bg_feature">
+    <value>&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;&#1085;&#1086;&#1089;&#1090;</value>
+  </data>
+  <data xml:space="preserve" name="bg_background">
+    <value>&#1055;&#1088;&#1077;&#1076;&#1080;&#1089;&#1090;&#1086;&#1088;&#1080;&#1103;</value>
+  </data>
+  <data xml:space="preserve" name="bg_scenario">
+    <value>&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1081;</value>
+  </data>
+  <data xml:space="preserve" name="bg_scenario_outline">
+    <value>&#1056;&#1072;&#1084;&#1082;&#1072; &#1085;&#1072; &#1089;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1081;</value>
+  </data>
+  <data xml:space="preserve" name="bg_examples">
+    <value>&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="bg_given">
+    <value>*|&#1044;&#1072;&#1076;&#1077;&#1085;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="bg_when">
+    <value>*|&#1050;&#1086;&#1075;&#1072;&#1090;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="bg_then">
+    <value>*|&#1058;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="bg_and">
+    <value>*|&#1048;</value>
+  </data>
+  <data xml:space="preserve" name="bg_but">
+    <value>*|&#1053;&#1086;</value>
+  </data>
+  <data xml:space="preserve" name="pl_name">
+    <value>Polish</value>
+  </data>
+  <data xml:space="preserve" name="pl_native">
+    <value>polski</value>
+  </data>
+  <data xml:space="preserve" name="pl_feature">
+    <value>W&#322;a&#347;ciwo&#347;&#263;</value>
+  </data>
+  <data xml:space="preserve" name="pl_background">
+    <value>Za&#322;o&#380;enia</value>
+  </data>
+  <data xml:space="preserve" name="pl_scenario">
+    <value>Scenariusz</value>
+  </data>
+  <data xml:space="preserve" name="pl_scenario_outline">
+    <value>Szablon scenariusza</value>
+  </data>
+  <data xml:space="preserve" name="pl_examples">
+    <value>Przyk&#322;ady</value>
+  </data>
+  <data xml:space="preserve" name="pl_given">
+    <value>*|Zak&#322;adaj&#261;c</value>
+  </data>
+  <data xml:space="preserve" name="pl_when">
+    <value>*|Je&#380;eli</value>
+  </data>
+  <data xml:space="preserve" name="pl_then">
+    <value>*|Wtedy</value>
+  </data>
+  <data xml:space="preserve" name="pl_and">
+    <value>*|Oraz</value>
+  </data>
+  <data xml:space="preserve" name="pl_but">
+    <value>*|Ale</value>
+  </data>
+  <data xml:space="preserve" name="en-au_name">
+    <value>Australian</value>
+  </data>
+  <data xml:space="preserve" name="en-au_native">
+    <value>Australian</value>
+  </data>
+  <data xml:space="preserve" name="en-au_feature">
+    <value>Crikey</value>
+  </data>
+  <data xml:space="preserve" name="en-au_background">
+    <value>Background</value>
+  </data>
+  <data xml:space="preserve" name="en-au_scenario">
+    <value>Mate</value>
+  </data>
+  <data xml:space="preserve" name="en-au_scenario_outline">
+    <value>Blokes</value>
+  </data>
+  <data xml:space="preserve" name="en-au_examples">
+    <value>Cobber</value>
+  </data>
+  <data xml:space="preserve" name="en-au_given">
+    <value>*|Ya know how</value>
+  </data>
+  <data xml:space="preserve" name="en-au_when">
+    <value>*|When</value>
+  </data>
+  <data xml:space="preserve" name="en-au_then">
+    <value>*|Ya gotta</value>
+  </data>
+  <data xml:space="preserve" name="en-au_and">
+    <value>*|N</value>
+  </data>
+  <data xml:space="preserve" name="en-au_but">
+    <value>*|Cept</value>
+  </data>
+  <data xml:space="preserve" name="ar_name">
+    <value>Arabic</value>
+  </data>
+  <data xml:space="preserve" name="ar_native">
+    <value>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</value>
+  </data>
+  <data xml:space="preserve" name="ar_feature">
+    <value>&#1582;&#1575;&#1589;&#1610;&#1577;</value>
+  </data>
+  <data xml:space="preserve" name="ar_background">
+    <value>&#1575;&#1604;&#1582;&#1604;&#1601;&#1610;&#1577;</value>
+  </data>
+  <data xml:space="preserve" name="ar_scenario">
+    <value>&#1587;&#1610;&#1606;&#1575;&#1585;&#1610;&#1608;</value>
+  </data>
+  <data xml:space="preserve" name="ar_scenario_outline">
+    <value>&#1587;&#1610;&#1606;&#1575;&#1585;&#1610;&#1608; &#1605;&#1582;&#1591;&#1591;</value>
+  </data>
+  <data xml:space="preserve" name="ar_examples">
+    <value>&#1575;&#1605;&#1579;&#1604;&#1577;</value>
+  </data>
+  <data xml:space="preserve" name="ar_given">
+    <value>*|&#1576;&#1601;&#1585;&#1590;</value>
+  </data>
+  <data xml:space="preserve" name="ar_when">
+    <value>*|&#1605;&#1578;&#1609;|&#1593;&#1606;&#1583;&#1605;&#1575;</value>
+  </data>
+  <data xml:space="preserve" name="ar_then">
+    <value>*|&#1575;&#1584;&#1575;&#1611;|&#1579;&#1605;</value>
+  </data>
+  <data xml:space="preserve" name="ar_and">
+    <value>*|&#1608;</value>
+  </data>
+  <data xml:space="preserve" name="ar_but">
+    <value>*|&#1604;&#1603;&#1606;</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_name">
+    <value>Serbian_latin</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_native">
+    <value>Srpski_latinica</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_feature">
+    <value>Funkcionalnost|Mogu&#263;nost|Mogucnost|Osobina</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_background">
+    <value>Kontekst|Osnova|Pozadina</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_scenario">
+    <value>Scenario|Primer</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_scenario_outline">
+    <value>Struktura scenarija|Skica|Koncept</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_examples">
+    <value>Primeri|Scenariji</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_given">
+    <value>*|Zadato|Zadate|Zatati</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_when">
+    <value>*|Kada|Kad</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_then">
+    <value>*|Onda</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_and">
+    <value>*|I</value>
+  </data>
+  <data xml:space="preserve" name="sr-Latn_but">
+    <value>*|Ali</value>
+  </data>
+  <data xml:space="preserve" name="se_name">
+    <value>Swedish</value>
+  </data>
+  <data xml:space="preserve" name="se_native">
+    <value>Svenska</value>
+  </data>
+  <data xml:space="preserve" name="se_feature">
+    <value>Egenskap</value>
+  </data>
+  <data xml:space="preserve" name="se_background">
+    <value>Bakgrund</value>
+  </data>
+  <data xml:space="preserve" name="se_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="se_scenario_outline">
+    <value>Abstrakt Scenario</value>
+  </data>
+  <data xml:space="preserve" name="se_examples">
+    <value>Exempel</value>
+  </data>
+  <data xml:space="preserve" name="se_given">
+    <value>*|Givet</value>
+  </data>
+  <data xml:space="preserve" name="se_when">
+    <value>*|N&#228;r</value>
+  </data>
+  <data xml:space="preserve" name="se_then">
+    <value>*|S&#229;</value>
+  </data>
+  <data xml:space="preserve" name="se_and">
+    <value>*|Och</value>
+  </data>
+  <data xml:space="preserve" name="se_but">
+    <value>*|Men</value>
+  </data>
+  <data xml:space="preserve" name="ro_name">
+    <value>Romanian</value>
+  </data>
+  <data xml:space="preserve" name="ro_native">
+    <value>rom&#226;n&#259;</value>
+  </data>
+  <data xml:space="preserve" name="ro_feature">
+    <value>Functionalitate</value>
+  </data>
+  <data xml:space="preserve" name="ro_background">
+    <value>Conditii</value>
+  </data>
+  <data xml:space="preserve" name="ro_scenario">
+    <value>Scenariu</value>
+  </data>
+  <data xml:space="preserve" name="ro_scenario_outline">
+    <value>Scenariul de sablon</value>
+  </data>
+  <data xml:space="preserve" name="ro_examples">
+    <value>Exemplele</value>
+  </data>
+  <data xml:space="preserve" name="ro_given">
+    <value>*|Daca</value>
+  </data>
+  <data xml:space="preserve" name="ro_when">
+    <value>*|Cand</value>
+  </data>
+  <data xml:space="preserve" name="ro_then">
+    <value>*|Atunci</value>
+  </data>
+  <data xml:space="preserve" name="ro_and">
+    <value>*|Si</value>
+  </data>
+  <data xml:space="preserve" name="ro_but">
+    <value>*|Dar</value>
+  </data>
+  <data xml:space="preserve" name="he_name">
+    <value>Hebrew</value>
+  </data>
+  <data xml:space="preserve" name="he_native">
+    <value>&#1506;&#1489;&#1512;&#1497;&#1514;</value>
+  </data>
+  <data xml:space="preserve" name="he_feature">
+    <value>&#1514;&#1499;&#1493;&#1504;&#1492;</value>
+  </data>
+  <data xml:space="preserve" name="he_background">
+    <value>&#1512;&#1511;&#1506;</value>
+  </data>
+  <data xml:space="preserve" name="he_scenario">
+    <value>&#1514;&#1512;&#1495;&#1497;&#1513;</value>
+  </data>
+  <data xml:space="preserve" name="he_scenario_outline">
+    <value>&#1514;&#1489;&#1504;&#1497;&#1514; &#1514;&#1512;&#1495;&#1497;&#1513;</value>
+  </data>
+  <data xml:space="preserve" name="he_examples">
+    <value>&#1491;&#1493;&#1490;&#1502;&#1488;&#1493;&#1514;</value>
+  </data>
+  <data xml:space="preserve" name="he_given">
+    <value>*|&#1489;&#1492;&#1497;&#1504;&#1514;&#1503;</value>
+  </data>
+  <data xml:space="preserve" name="he_when">
+    <value>*|&#1499;&#1488;&#1513;&#1512;</value>
+  </data>
+  <data xml:space="preserve" name="he_then">
+    <value>*|&#1488;&#1494;|&#1488;&#1494;&#1497;</value>
+  </data>
+  <data xml:space="preserve" name="he_and">
+    <value>*|&#1493;&#1490;&#1501;</value>
+  </data>
+  <data xml:space="preserve" name="he_but">
+    <value>*|&#1488;&#1489;&#1500;</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_name">
+    <value>LOLCAT</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_native">
+    <value>LOLCAT</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_feature">
+    <value>OH HAI</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_background">
+    <value>B4</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_scenario">
+    <value>MISHUN</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_scenario_outline">
+    <value>MISHUN SRSLY</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_examples">
+    <value>EXAMPLZ</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_given">
+    <value>*|I CAN HAZ</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_when">
+    <value>*|WEN</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_then">
+    <value>*|DEN</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_and">
+    <value>*|AN</value>
+  </data>
+  <data xml:space="preserve" name="en-lol_but">
+    <value>*|BUT</value>
+  </data>
+  <data xml:space="preserve" name="da_name">
+    <value>Danish</value>
+  </data>
+  <data xml:space="preserve" name="da_native">
+    <value>dansk</value>
+  </data>
+  <data xml:space="preserve" name="da_feature">
+    <value>Egenskab</value>
+  </data>
+  <data xml:space="preserve" name="da_background">
+    <value>Baggrund</value>
+  </data>
+  <data xml:space="preserve" name="da_scenario">
+    <value>Scenarie</value>
+  </data>
+  <data xml:space="preserve" name="da_scenario_outline">
+    <value>Abstrakt Scenario</value>
+  </data>
+  <data xml:space="preserve" name="da_examples">
+    <value>Eksempler</value>
+  </data>
+  <data xml:space="preserve" name="da_given">
+    <value>*|Givet</value>
+  </data>
+  <data xml:space="preserve" name="da_when">
+    <value>*|N&#229;r</value>
+  </data>
+  <data xml:space="preserve" name="da_then">
+    <value>*|S&#229;</value>
+  </data>
+  <data xml:space="preserve" name="da_and">
+    <value>*|Og</value>
+  </data>
+  <data xml:space="preserve" name="da_but">
+    <value>*|Men</value>
+  </data>
+  <data xml:space="preserve" name="vi_name">
+    <value>Vietnamese</value>
+  </data>
+  <data xml:space="preserve" name="vi_native">
+    <value>Ti&#7871;ng Vi&#7879;t</value>
+  </data>
+  <data xml:space="preserve" name="vi_feature">
+    <value>T&#237;nh n&#259;ng</value>
+  </data>
+  <data xml:space="preserve" name="vi_background">
+    <value>B&#7889;i c&#7843;nh</value>
+  </data>
+  <data xml:space="preserve" name="vi_scenario">
+    <value>T&#236;nh hu&#7889;ng|K&#7883;ch b&#7843;n</value>
+  </data>
+  <data xml:space="preserve" name="vi_scenario_outline">
+    <value>Khung t&#236;nh hu&#7889;ng|Khung k&#7883;ch b&#7843;n</value>
+  </data>
+  <data xml:space="preserve" name="vi_examples">
+    <value>D&#7919; li&#7879;u</value>
+  </data>
+  <data xml:space="preserve" name="vi_given">
+    <value>*|Bi&#7871;t|Cho</value>
+  </data>
+  <data xml:space="preserve" name="vi_when">
+    <value>*|Khi</value>
+  </data>
+  <data xml:space="preserve" name="vi_then">
+    <value>*|Th&#236;</value>
+  </data>
+  <data xml:space="preserve" name="vi_and">
+    <value>*|V&#224;</value>
+  </data>
+  <data xml:space="preserve" name="vi_but">
+    <value>*|Nh&#432;ng</value>
+  </data>
+  <data xml:space="preserve" name="tr_name">
+    <value>Turkish</value>
+  </data>
+  <data xml:space="preserve" name="tr_native">
+    <value>T&#252;rk&#231;e</value>
+  </data>
+  <data xml:space="preserve" name="tr_feature">
+    <value>&#214;zellik</value>
+  </data>
+  <data xml:space="preserve" name="tr_background">
+    <value>Ge&#231;mi&#351;</value>
+  </data>
+  <data xml:space="preserve" name="tr_scenario">
+    <value>Senaryo</value>
+  </data>
+  <data xml:space="preserve" name="tr_scenario_outline">
+    <value>Senaryo tasla&#287;&#305;</value>
+  </data>
+  <data xml:space="preserve" name="tr_examples">
+    <value>&#214;rnekler</value>
+  </data>
+  <data xml:space="preserve" name="tr_given">
+    <value>*|Diyelim ki</value>
+  </data>
+  <data xml:space="preserve" name="tr_when">
+    <value>*|E&#287;er ki</value>
+  </data>
+  <data xml:space="preserve" name="tr_then">
+    <value>*|O zaman</value>
+  </data>
+  <data xml:space="preserve" name="tr_and">
+    <value>*|Ve</value>
+  </data>
+  <data xml:space="preserve" name="tr_but">
+    <value>*|Fakat|Ama</value>
+  </data>
+  <data xml:space="preserve" name="nl_name">
+    <value>Dutch</value>
+  </data>
+  <data xml:space="preserve" name="nl_native">
+    <value>Nederlands</value>
+  </data>
+  <data xml:space="preserve" name="nl_feature">
+    <value>Functionaliteit</value>
+  </data>
+  <data xml:space="preserve" name="nl_background">
+    <value>Achtergrond</value>
+  </data>
+  <data xml:space="preserve" name="nl_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="nl_scenario_outline">
+    <value>Abstract Scenario</value>
+  </data>
+  <data xml:space="preserve" name="nl_examples">
+    <value>Voorbeelden</value>
+  </data>
+  <data xml:space="preserve" name="nl_given">
+    <value>*|Gegeven|Stel</value>
+  </data>
+  <data xml:space="preserve" name="nl_when">
+    <value>*|Als</value>
+  </data>
+  <data xml:space="preserve" name="nl_then">
+    <value>*|Dan</value>
+  </data>
+  <data xml:space="preserve" name="nl_and">
+    <value>*|En</value>
+  </data>
+  <data xml:space="preserve" name="nl_but">
+    <value>*|Maar</value>
+  </data>
+  <data xml:space="preserve" name="lt_name">
+    <value>Lithuanian</value>
+  </data>
+  <data xml:space="preserve" name="lt_native">
+    <value>lietuvi&#371; kalba</value>
+  </data>
+  <data xml:space="preserve" name="lt_feature">
+    <value>Savyb&#279;</value>
+  </data>
+  <data xml:space="preserve" name="lt_background">
+    <value>Kontekstas</value>
+  </data>
+  <data xml:space="preserve" name="lt_scenario">
+    <value>Scenarijus</value>
+  </data>
+  <data xml:space="preserve" name="lt_scenario_outline">
+    <value>Scenarijaus &#353;ablonas</value>
+  </data>
+  <data xml:space="preserve" name="lt_examples">
+    <value>Pavyzd&#382;iai|Scenarijai|Variantai</value>
+  </data>
+  <data xml:space="preserve" name="lt_given">
+    <value>*|Duota</value>
+  </data>
+  <data xml:space="preserve" name="lt_when">
+    <value>*|Kai</value>
+  </data>
+  <data xml:space="preserve" name="lt_then">
+    <value>*|Tada</value>
+  </data>
+  <data xml:space="preserve" name="lt_and">
+    <value>*|Ir</value>
+  </data>
+  <data xml:space="preserve" name="lt_but">
+    <value>*|Bet</value>
+  </data>
+  <data xml:space="preserve" name="sr_name">
+    <value>Serbian</value>
+  </data>
+  <data xml:space="preserve" name="sr_native">
+    <value>&#1057;&#1088;&#1087;&#1089;&#1082;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="sr_feature">
+    <value>&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;&#1085;&#1086;&#1089;&#1090;|&#1052;&#1086;&#1075;&#1091;&#1115;&#1085;&#1086;&#1089;&#1090;|&#1054;&#1089;&#1086;&#1073;&#1080;&#1085;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="sr_background">
+    <value>&#1050;&#1086;&#1085;&#1090;&#1077;&#1082;&#1089;&#1090;|&#1054;&#1089;&#1085;&#1086;&#1074;&#1072;|&#1055;&#1086;&#1079;&#1072;&#1076;&#1080;&#1085;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="sr_scenario">
+    <value>&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1086;|&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;</value>
+  </data>
+  <data xml:space="preserve" name="sr_scenario_outline">
+    <value>&#1057;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1072; &#1089;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1112;&#1072;|&#1057;&#1082;&#1080;&#1094;&#1072;|&#1050;&#1086;&#1085;&#1094;&#1077;&#1087;&#1090;</value>
+  </data>
+  <data xml:space="preserve" name="sr_examples">
+    <value>&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#1080;|&#1057;&#1094;&#1077;&#1085;&#1072;&#1088;&#1080;&#1112;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="sr_given">
+    <value>*|&#1047;&#1072;&#1076;&#1072;&#1090;&#1086;|&#1047;&#1072;&#1076;&#1072;&#1090;&#1077;|&#1047;&#1072;&#1076;&#1072;&#1090;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="sr_when">
+    <value>*|&#1050;&#1072;&#1076;&#1072;|&#1050;&#1072;&#1076;</value>
+  </data>
+  <data xml:space="preserve" name="sr_then">
+    <value>*|&#1054;&#1085;&#1076;&#1072;</value>
+  </data>
+  <data xml:space="preserve" name="sr_and">
+    <value>*|&#1048;</value>
+  </data>
+  <data xml:space="preserve" name="sr_but">
+    <value>*|&#1040;&#1083;&#1080;</value>
+  </data>
+  <data xml:space="preserve" name="en_name">
+    <value>English</value>
+  </data>
+  <data xml:space="preserve" name="en_native">
+    <value>English</value>
+  </data>
+  <data xml:space="preserve" name="en_feature">
+    <value>Feature</value>
+  </data>
+  <data xml:space="preserve" name="en_background">
+    <value>Background</value>
+  </data>
+  <data xml:space="preserve" name="en_scenario">
+    <value>Scenario</value>
+  </data>
+  <data xml:space="preserve" name="en_scenario_outline">
+    <value>Scenario Outline</value>
+  </data>
+  <data xml:space="preserve" name="en_examples">
+    <value>Examples|Scenarios</value>
+  </data>
+  <data xml:space="preserve" name="en_given">
+    <value>*|Given</value>
+  </data>
+  <data xml:space="preserve" name="en_when">
+    <value>*|When</value>
+  </data>
+  <data xml:space="preserve" name="en_then">
+    <value>*|Then</value>
+  </data>
+  <data xml:space="preserve" name="en_and">
+    <value>*|And</value>
+  </data>
+  <data xml:space="preserve" name="en_but">
+    <value>*|But</value>
+  </data>
+  <data xml:space="preserve" name="ro2_name">
+    <value>Romanian (diacritical)</value>
+  </data>
+  <data xml:space="preserve" name="ro2_native">
+    <value>rom&#226;n&#259; (diacritical)</value>
+  </data>
+  <data xml:space="preserve" name="ro2_feature">
+    <value>Func&#539;ionalitate</value>
+  </data>
+  <data xml:space="preserve" name="ro2_background">
+    <value>Condi&#355;ii</value>
+  </data>
+  <data xml:space="preserve" name="ro2_scenario">
+    <value>Scenariu</value>
+  </data>
+  <data xml:space="preserve" name="ro2_scenario_outline">
+    <value>Scenariul de &#351;ablon</value>
+  </data>
+  <data xml:space="preserve" name="ro2_examples">
+    <value>Exemplele</value>
+  </data>
+  <data xml:space="preserve" name="ro2_given">
+    <value>*|Dac&#259;</value>
+  </data>
+  <data xml:space="preserve" name="ro2_when">
+    <value>*|C&#226;nd</value>
+  </data>
+  <data xml:space="preserve" name="ro2_then">
+    <value>*|Atunci</value>
+  </data>
+  <data xml:space="preserve" name="ro2_and">
+    <value>*|&#536;i</value>
+  </data>
+  <data xml:space="preserve" name="ro2_but">
+    <value>*|Dar</value>
+  </data>
+  <data xml:space="preserve" name="lv_name">
+    <value>Latvian</value>
+  </data>
+  <data xml:space="preserve" name="lv_native">
+    <value>latvie&#353;u</value>
+  </data>
+  <data xml:space="preserve" name="lv_feature">
+    <value>Funkcionalit&#257;te|F&#299;&#269;a</value>
+  </data>
+  <data xml:space="preserve" name="lv_background">
+    <value>Konteksts|Situ&#257;cija</value>
+  </data>
+  <data xml:space="preserve" name="lv_scenario">
+    <value>Scen&#257;rijs</value>
+  </data>
+  <data xml:space="preserve" name="lv_scenario_outline">
+    <value>Scen&#257;rijs p&#275;c parauga</value>
+  </data>
+  <data xml:space="preserve" name="lv_examples">
+    <value>Piem&#275;ri|Paraugs</value>
+  </data>
+  <data xml:space="preserve" name="lv_given">
+    <value>*|Kad</value>
+  </data>
+  <data xml:space="preserve" name="lv_when">
+    <value>*|Ja</value>
+  </data>
+  <data xml:space="preserve" name="lv_then">
+    <value>*|Tad</value>
+  </data>
+  <data xml:space="preserve" name="lv_and">
+    <value>*|Un</value>
+  </data>
+  <data xml:space="preserve" name="lv_but">
+    <value>*|Bet</value>
+  </data>
+  <data xml:space="preserve" name="hr_name">
+    <value>Croatian</value>
+  </data>
+  <data xml:space="preserve" name="hr_native">
+    <value>hrvatski</value>
+  </data>
+  <data xml:space="preserve" name="hr_feature">
+    <value>Osobina|Mogu&#263;nost|Mogucnost</value>
+  </data>
+  <data xml:space="preserve" name="hr_background">
+    <value>Pozadina</value>
+  </data>
+  <data xml:space="preserve" name="hr_scenario">
+    <value>Scenarij</value>
+  </data>
+  <data xml:space="preserve" name="hr_scenario_outline">
+    <value>Skica|Koncept</value>
+  </data>
+  <data xml:space="preserve" name="hr_examples">
+    <value>Primjeri|Scenariji</value>
+  </data>
+  <data xml:space="preserve" name="hr_given">
+    <value>*|Zadan|Zadani|Zadano</value>
+  </data>
+  <data xml:space="preserve" name="hr_when">
+    <value>*|Kada|Kad</value>
+  </data>
+  <data xml:space="preserve" name="hr_then">
+    <value>*|Onda</value>
+  </data>
+  <data xml:space="preserve" name="hr_and">
+    <value>*|I</value>
+  </data>
+  <data xml:space="preserve" name="hr_but">
+    <value>*|Ali</value>
+  </data>
+</root>

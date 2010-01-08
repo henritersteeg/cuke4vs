@@ -88,7 +88,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
-            Assert.That(GivenCount(tokens), Is.EqualTo(1), "Given");
+            Assert.That(StepCount(tokens), Is.EqualTo(1), "Given");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(3), "Identifier");
         }
 
@@ -101,7 +101,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
-            Assert.That(WhenCount(tokens), Is.EqualTo(1), "When");
+            Assert.That(StepCount(tokens), Is.EqualTo(2), "Given/When/Then");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(4), "Identifier");
         }
 
@@ -114,7 +114,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
-            Assert.That(ThenCount(tokens), Is.EqualTo(1), "Then");
+            Assert.That(StepCount(tokens), Is.EqualTo(3), "Given/When/Then");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(5), "Identifier");
         }
 
@@ -127,7 +127,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
-            Assert.That(ThenCount(tokens), Is.EqualTo(1), "Then");
+            Assert.That(StepCount(tokens), Is.EqualTo(4), "Given/When/Then");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(6), "Identifier");
         }
 
@@ -140,7 +140,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
-            Assert.That(ThenCount(tokens), Is.EqualTo(1), "Then");
+            Assert.That(StepCount(tokens), Is.EqualTo(4), "Given/When/Then");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(6), "Identifier");
         }
 
@@ -156,9 +156,7 @@ namespace CucumberLanguageServicePackageTests
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
             Assert.That(ScenarioCount(tokens), Is.EqualTo(2), "Scenario");
-            Assert.That(GivenCount(tokens), Is.EqualTo(2), "Given");
-            Assert.That(WhenCount(tokens), Is.EqualTo(2), "When");
-            Assert.That(ThenCount(tokens), Is.EqualTo(2), "Then");
+            Assert.That(StepCount(tokens), Is.EqualTo(6), "Given/When/Then");
         }
 
         [Test]
@@ -186,9 +184,7 @@ namespace CucumberLanguageServicePackageTests
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
-            Assert.That(GivenCount(tokens), Is.EqualTo(2), "2 givens");
-            Assert.That(WhenCount(tokens), Is.EqualTo(2), "2 whens");
-            Assert.That(ThenCount(tokens), Is.EqualTo(2), "2 thens");
+            Assert.That(StepCount(tokens), Is.EqualTo(6), "Given/When/Then");
         }
 
         [Test]
@@ -203,9 +199,7 @@ namespace CucumberLanguageServicePackageTests
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
-            Assert.That(GivenCount(tokens), Is.EqualTo(2), "2 givens");
-            Assert.That(WhenCount(tokens), Is.EqualTo(2), "2 whens");
-            Assert.That(ThenCount(tokens), Is.EqualTo(2), "2 thens");
+            Assert.That(StepCount(tokens), Is.EqualTo(6), "Given/When/Then");
         }
 
 
