@@ -28,5 +28,10 @@ namespace CucumberLanguageServices.i18n
         {
             return new LanguageTokenizer { Name = name, Tokens = tokens }.CreateIronyToken();
         }
+
+        public override string ToString()
+        {
+            return Code;
+        }
     }
 }

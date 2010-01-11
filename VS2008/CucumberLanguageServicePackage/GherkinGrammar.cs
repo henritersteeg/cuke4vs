@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using CucumberLanguageServices.CucumberLanguageService;
 using CucumberLanguageServices.i18n;
@@ -52,15 +53,19 @@ namespace CucumberLanguageServices
 
         public static readonly Regex LanguageRegex = new Regex("^#\\s*language:\\s*([^\\s]+)\\s*\\n");
 
+        private static int _instanceCounter = 0;
+        private int _instanceNo;
+
         public static GherkinGrammar CreateFor(string sourceText)
         {
-            var match = LanguageRegex.Match(sourceText);
-            if (!match.Success)
-                return new GherkinGrammar();
-
-            var languageCode = match.Groups[1].Value;
-            var language = NaturalLanguageFactory.GetLanguage(languageCode);
+            var language = GetLanguageFor(sourceText);
             return new GherkinGrammar(language);
+        }
+
+        public static NaturalLanguage GetLanguageFor(string sourceText)
+        {
+            var match = LanguageRegex.Match(sourceText);
+            return match.Success ? NaturalLanguageFactory.GetLanguage(match.Groups[1].Value) : null;
         }
 
         public GherkinGrammar()
@@ -70,15 +75,26 @@ namespace CucumberLanguageServices
 
         public GherkinGrammar(NaturalLanguage language)
         {
+            _instanceNo = ++_instanceCounter;
+            InitGrammar(language);
+            Debug.Print("{0} constructed.", this);
+        }
+
+        private void InitGrammar(NaturalLanguage language)
+        {
             Language = language ?? NaturalLanguageFactory.DEFAULT_LANGUAGE;
 
+            if (CurrentGrammar == null)
+                new GherkinGrammar(Language); // Hack!
             DeclareTerminals();
-
             DeclareNonTerminals();
-
             DefineRules();
-
             DefineKeywords();
+        }
+
+        public void SetLanguageFor(string sourceCode)
+        {
+            InitGrammar(GetLanguageFor(sourceCode));
         }
 
         private void DeclareTerminals()
@@ -151,6 +167,9 @@ namespace CucumberLanguageServices
         {
         }
 
-
+        public override string ToString()
+        {
+            return string.Format("GherkinGrammer({0}, {1})", _instanceNo, Language != null ? Language.Code : "<null>");
+        }
     }
 }

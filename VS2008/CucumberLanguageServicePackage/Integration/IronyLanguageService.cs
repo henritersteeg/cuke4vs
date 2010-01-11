@@ -12,17 +12,31 @@ namespace CucumberLanguageServices
 {
     public class IronyLanguageService : Microsoft.VisualStudio.Package.LanguageService
     {
-        private readonly GherkinGrammar GherkinGrammar;
-        private readonly Parser parser;
-        private ParsingContext context;
+        private GherkinGrammar GherkinGrammar;
+        private Parser parser;
 
         public IronyLanguageService()
         {
-            GherkinGrammar = new GherkinGrammar();
-            parser = new Parser(Configuration.GherkinGrammar);
-            context = new ParsingContext(parser);
+            InitParser(string.Empty);
         }
 
+        public override Colorizer GetColorizer(IVsTextLines buffer)
+        {
+            Console.WriteLine();
+            return base.GetColorizer(buffer);
+        }
+
+        private void InitParser(string sourceText)
+        {
+            if (GherkinGrammar != null && Equals(GherkinGrammar.GetLanguageFor(sourceText).Code, GherkinGrammar.Language.Code))
+                return;
+            GherkinGrammar = GherkinGrammar.CreateFor(sourceText);
+            parser = new Parser(GherkinGrammar);
+            if (scanner != null)
+                scanner.SetParser(GherkinGrammar);
+            else
+                scanner = new LineScanner(GherkinGrammar);
+        }
 
         #region Custom Colors
         public override int GetColorableItem(int index, out IVsColorableItem item)
@@ -65,7 +79,8 @@ namespace CucumberLanguageServices
             return new Source(this, buffer, this.GetColorizer(buffer));
         }
 
-        private IScanner scanner;
+        private LineScanner scanner;
+
         public override IScanner GetScanner(IVsTextLines buffer)
         {
             if (scanner == null)
@@ -89,7 +104,7 @@ namespace CucumberLanguageServices
 
         public override Microsoft.VisualStudio.Package.AuthoringScope ParseSource(ParseRequest req)
         {
-            Debug.Print("ParseSource at ({0}:{1}), reason {2}", req.Line, req.Col, req.Reason);
+            Debug.Print("ParseSource at ({0}:{1}), reason {2} (lang={3})", req.Line, req.Col, req.Reason, GherkinGrammar.GetLanguageFor(req.Text));
             Source source = (Source)this.GetSource(req.FileName);
             switch (req.Reason)
             {
@@ -97,6 +112,7 @@ namespace CucumberLanguageServices
                     // This is where you perform your syntax highlighting.
                     // Parse entire source as given in req.Text.
                     // Store results in the AuthoringScope object.
+                    InitParser(req.Text);
                     var parseTree = parser.Parse(req.Text, req.FileName);
                     if (parseTree == null || parseTree.Root == null)
                         return null;
