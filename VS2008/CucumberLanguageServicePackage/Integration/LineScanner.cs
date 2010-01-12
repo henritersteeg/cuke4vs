@@ -26,10 +26,10 @@ namespace CucumberLanguageServices
 
         public bool ScanTokenAndProvideInfoAboutIt(TokenInfo tokenInfo, ref int state)
         {
-            Debug.Print("LineScanner.ScanToken({1}) using {0}", parser != null && parser.Language != null ? parser.Language.Grammar : null, state);
+            //Debug.Print("LineScanner.ScanToken({1}) using {0}", parser != null && parser.Language != null ? parser.Language.Grammar : null, state);
             // Reads each token in a source line and performs syntax coloring.  It will continue to
             // be called for the source until false is returned.
-            Debug.Print("reading token from {0}", parser.Context != null && parser.Context.Source != null ? parser.Context.Source.Text : "<null>");
+            //Debug.Print("reading token from {0}", parser.Context != null && parser.Context.Source != null ? parser.Context.Source.Text : "<null>");
             Token token = parser.Scanner.VsReadToken(ref state);
 
             // !EOL and !EOF
@@ -50,7 +50,13 @@ namespace CucumberLanguageServices
         private static string TokenInfo(TokenInfo tokenInfo, Token token)
         {
             if (tokenInfo == null) return "<null>";
-            return string.Format("TokenInfo({0}:{1} {2})", tokenInfo.StartIndex, tokenInfo.EndIndex, token != null ? (token.Terminal != null ? token.Terminal.Name : token.ValueString) : "<null>");
+            return string.Format("TokenInfo({0}:{1} {2} '{3}' length={4})", 
+                                 tokenInfo.StartIndex, 
+                                 tokenInfo.EndIndex, 
+                                 token != null ? (token.Terminal != null ? token.Terminal.Name : token.ValueString) : "<null>",
+                                 token != null ? token.ValueString : string.Empty,
+                                 token != null ? token.Length : 0
+                                 );
         }
 
         private static void SetTrigger(Token token, TokenInfo tokenInfo)

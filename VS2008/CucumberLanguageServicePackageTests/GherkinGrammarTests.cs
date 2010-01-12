@@ -49,7 +49,6 @@ namespace CucumberLanguageServicePackageTests
             // Then
             AssertNoError(tokens);
             Assert.That(FeatureCount(tokens), Is.EqualTo(1), "Feature");
-            Assert.That(tokens.Where(token => token.Text == ":").Count(), Is.EqualTo(1), ":");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(1), "Identifier");
         }
 
@@ -75,7 +74,6 @@ namespace CucumberLanguageServicePackageTests
             var tokens = parseTree.Tokens;
             AssertNoError(tokens);
             Assert.That(ScenarioCount(tokens), Is.EqualTo(1), "Scenario");
-            Assert.That(tokens.Where(token => token.Text == ":").Count(), Is.EqualTo(2), ":");
             Assert.That(tokens.Where(token => token.Terminal == _grammar.Identifier).Count(), Is.EqualTo(2), "Identifier");
         }
 

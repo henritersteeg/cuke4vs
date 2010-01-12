@@ -41,9 +41,8 @@ namespace CucumberLanguageServices
         private readonly NonTerminal TableRows = new NonTerminal("table-rows");
         private readonly NonTerminal TableRow = new NonTerminal("table-row");
         private readonly NonTerminal TableCells = new NonTerminal("table-cells");
-        private readonly Terminal LastColon = new RegexBasedTerminal("last-colon", "\\|\\s*[\\r\\n]+", "|");
-
-        public readonly Terminal DescriptiveLine = new GherkinIdentifier("descriptive-line");
+        private readonly Terminal LastPipe = new RegexBasedTerminal("last-pipe", "\\|\\s*[\\r\\n]+", "|");
+        public readonly Terminal DescriptiveLine = new GherkinIdentifier("descriptive-line") { Priority = Terminal.LowestPriority};
 
         public IdentifierTerminal Tag { get; private set; }
         public GherkinIdentifier Identifier { get; private set; }
@@ -122,25 +121,25 @@ namespace CucumberLanguageServices
 
             Tags.Rule = MakeStarRule(Tags, Tag);
 
-            FeatureLine.Rule = Language.Feature + ":" + Identifier;
+            FeatureLine.Rule = Language.Feature + Identifier;
 
             Description.Rule = MakePlusRule(Description, DescriptiveLine);
 
             BackgroundClause.Rule = BackgroundLine + GivenWhenThenClause;
 
-            BackgroundLine.Rule = Language.Background + ":" + Identifiers;
+            BackgroundLine.Rule = Language.Background + Identifiers;
 
             Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioClause | ScenarioOutlineClause));
 
             ScenarioOutlineClause.Rule = Tags + ScenarioOutlineLine + Identifiers + GivenWhenThenClause + ExamplesClause;
 
-            ScenarioOutlineLine.Rule = Language.ScenarioOutline + ":" + Identifier;
+            ScenarioOutlineLine.Rule = Language.ScenarioOutline + Identifier;
 
-            ExamplesClause.Rule = Language.Examples + ":" + Table;
+            ExamplesClause.Rule = Language.Examples + Table;
 
             ScenarioClause.Rule = Tags + ScenarioLine + Identifiers + GivenWhenThenClause;
 
-            ScenarioLine.Rule = Language.Scenario + ":" + Identifier;
+            ScenarioLine.Rule = Language.Scenario + Identifier;
 
             GivenWhenThenClause.Rule = MakeStarRule(GivenWhenThenClause, GivenWhenThenLine);
 
@@ -150,13 +149,13 @@ namespace CucumberLanguageServices
 
             Table.Rule = TableHeader + TableRows;
 
-            TableHeader.Rule = ToTerm("|") + ColumnNames + LastColon;
+            TableHeader.Rule = ToTerm("|") + ColumnNames + LastPipe;
 
             ColumnNames.Rule = MakeStarRule(ColumnNames, ToTerm("|"), ColumnName);
 
             TableRows.Rule = MakeStarRule(TableRows, TableRow);
 
-            TableRow.Rule = ToTerm("|") + TableCells + LastColon;
+            TableRow.Rule = ToTerm("|") + TableCells + LastPipe;
 
             TableCells.Rule = MakeStarRule(TableCells, ToTerm("|"), TableCell);
 

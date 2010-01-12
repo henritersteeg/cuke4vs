@@ -13,7 +13,16 @@ namespace CucumberLanguageServices.i18n
 
         public KeyTerm[] CreateKeyTerms()
         {
-            return Tokens != null ? Tokens.Split('|').Distinct().Select(token => new KeyTerm(token, Name)).ToArray() : new KeyTerm[]{};
+            return Tokens != null ? Tokens.Split('|').Distinct().Select(token => CreateKeyTerm(token)).ToArray() : new KeyTerm[] { };
+        }
+
+        private KeyTerm CreateKeyTerm(string token)
+        {
+            return new KeyTerm(token, Name)
+                                {
+                                    Options = TermOptions.IsReservedWord,
+                                    EditorInfo = new TokenEditorInfo(TokenType.Keyword, TokenColor.Keyword, TokenTriggers.None)
+                                };
         }
 
         public NonTerminal CreateIronyToken()

@@ -35,6 +35,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CucumberLanguageServicePackage\Resources\Irony.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Package.LanguageService.9.0, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\nunit.core.dll</HintPath>
@@ -64,6 +65,7 @@
     <Compile Include="CucumberTestUtils.cs" />
     <Compile Include="FeatureSpecTests.cs" />
     <Compile Include="GherkinGrammarTests.cs" />
+    <Compile Include="LineScannerTests.cs" />
     <Compile Include="NaturalLanguageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

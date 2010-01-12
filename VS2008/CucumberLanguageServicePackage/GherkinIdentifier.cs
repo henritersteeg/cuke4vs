@@ -8,9 +8,10 @@ namespace CucumberLanguageServices.CucumberLanguageService
 {
     public class GherkinIdentifier : FreeTextLiteral
     {
-        public GherkinIdentifier(string name) : base(name, "\n", "\r")
+        public GherkinIdentifier(string name) : base(name, FreeTextOptions.AllowEof, "\n", "\r")
         {
-            Priority = LowestPriority;
+            Priority = LowestPriority + 100;
+            EditorInfo = new TokenEditorInfo(TokenType.Identifier, TokenColor.Identifier, TokenTriggers.None);
         }
     }
 }

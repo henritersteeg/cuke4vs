@@ -16,11 +16,11 @@ namespace CucumberLanguageServices.i18n
         public NaturalLanguage(NaturalLanguageText languageText)
         {
             Code = languageText.Code;
-            Feature = CreateTerm("Feature", languageText.Feature);
-            Background = CreateTerm("Background", languageText.Background);
-            Scenario = CreateTerm("Scenario", languageText.Scenario);
-            ScenarioOutline = CreateTerm("Scenario Outline", languageText.ScenarioOutline);
-            Examples = CreateTerm("Examples", languageText.Examples);
+            Feature = CreateTerm("Feature", languageText.Feature + ":");
+            Background = CreateTerm("Background", languageText.Background + ":");
+            Scenario = CreateTerm("Scenario", languageText.Scenario + ":");
+            ScenarioOutline = CreateTerm("Scenario Outline", languageText.ScenarioOutline + ":");
+            Examples = CreateTerm("Examples", languageText.Examples + ":");
             Steps = CreateTerm("Step", languageText.Step);
         }
 
