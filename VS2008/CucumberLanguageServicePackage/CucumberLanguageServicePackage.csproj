@@ -82,6 +82,7 @@
     <Compile Include="Integration\Method.cs" />
     <Compile Include="Integration\Methods.cs" />
     <Compile Include="Integration\Package.cs" />
+    <Compile Include="Integration\RegionCreator.cs" />
     <Compile Include="Integration\Resolver.cs" />
     <Compile Include="Integration\Source.cs" />
     <Compile Include="Resources.Designer.cs">

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Package;
@@ -10,7 +11,7 @@ using Irony.Ast;
 
 namespace CucumberLanguageServices
 {
-    public class IronyLanguageService : Microsoft.VisualStudio.Package.LanguageService
+    public class IronyLanguageService : LanguageService
     {
         private GherkinGrammar GherkinGrammar;
         private Parser parser;
@@ -44,18 +45,15 @@ namespace CucumberLanguageServices
             if (index <= Configuration.ColorableItems.Count)
             {
                 item = Configuration.ColorableItems[index - 1];
-                return Microsoft.VisualStudio.VSConstants.S_OK;
+                return VSConstants.S_OK;
             }
-            else
-            {
-                throw new ArgumentNullException("index");
-            }
+            throw new ArgumentNullException("index");
         }
 
         public override int GetItemCount(out int count)
         {
             count = Configuration.ColorableItems.Count;
-            return Microsoft.VisualStudio.VSConstants.S_OK;
+            return VSConstants.S_OK;
         }
         #endregion
 
@@ -63,20 +61,20 @@ namespace CucumberLanguageServices
         private LanguagePreferences preferences;
         public override LanguagePreferences GetLanguagePreferences()
         {
-            if (this.preferences == null)
+            if (preferences == null)
             {
-                this.preferences = new LanguagePreferences(this.Site,
+                preferences = new LanguagePreferences(Site,
                                                         typeof(IronyLanguageService).GUID,
-                                                        this.Name);
-                this.preferences.Init();
+                                                        Name);
+                preferences.Init();
+                preferences.AutoOutlining = true;
             }
-
-            return this.preferences;
+            return preferences;
         }
 
         public override Microsoft.VisualStudio.Package.Source CreateSource(IVsTextLines buffer)
         {
-            return new Source(this, buffer, this.GetColorizer(buffer));
+            return new Source(this, buffer, GetColorizer(buffer));
         }
 
         private LineScanner scanner;
@@ -84,9 +82,9 @@ namespace CucumberLanguageServices
         public override IScanner GetScanner(IVsTextLines buffer)
         {
             if (scanner == null)
-                this.scanner = new LineScanner(GherkinGrammar);
+                scanner = new LineScanner(GherkinGrammar);
 
-            return this.scanner;
+            return scanner;
         }
         #endregion
 
@@ -94,7 +92,7 @@ namespace CucumberLanguageServices
         {
             // from IronPythonLanguage sample
             // this appears to be necessary to get a parse request with ParseReason = Check?
-            Source src = (Source)GetSource(this.LastActiveTextView);
+            var src = (Source)GetSource(LastActiveTextView);
             if (src != null && src.LastParseTime >= Int32.MaxValue >> 12)
             {
                 src.LastParseTime = 0;
@@ -105,7 +103,7 @@ namespace CucumberLanguageServices
         public override Microsoft.VisualStudio.Package.AuthoringScope ParseSource(ParseRequest req)
         {
             Debug.Print("ParseSource at ({0}:{1}), reason {2} (lang={3})", req.Line, req.Col, req.Reason, GherkinGrammar.GetLanguageFor(req.Text));
-            Source source = (Source)this.GetSource(req.FileName);
+            var source = (Source)GetSource(req.FileName);
             switch (req.Reason)
             {
                 case ParseReason.Check:
@@ -119,41 +117,45 @@ namespace CucumberLanguageServices
 
                     var node = (AstNode)parseTree.Root.AstNode;
                     source.ParseResult = node;
-
                     // Used for brace matching.
                     TokenStack braces = parser.Context.OpenBraces;
                     foreach (Token brace in braces)
                     {
-                        TextSpan openBrace = new TextSpan();
-                        openBrace.iStartLine = brace.Location.Line;
-                        openBrace.iStartIndex = brace.Location.Column;
-                        openBrace.iEndLine = brace.Location.Line;
+                        var openBrace = new TextSpan
+                                            {
+                                                iStartLine = brace.Location.Line,
+                                                iStartIndex = brace.Location.Column,
+                                                iEndLine = brace.Location.Line
+                                            };
                         openBrace.iEndIndex = openBrace.iStartIndex + brace.Length;
 
-                        TextSpan closeBrace = new TextSpan();
-                        closeBrace.iStartLine = brace.OtherBrace.Location.Line;
-                        closeBrace.iStartIndex = brace.OtherBrace.Location.Column;
-                        closeBrace.iEndLine = brace.OtherBrace.Location.Line;
+                        var closeBrace = new TextSpan
+                                             {
+                                                 iStartLine = brace.OtherBrace.Location.Line,
+                                                 iStartIndex = brace.OtherBrace.Location.Column,
+                                                 iEndLine = brace.OtherBrace.Location.Line
+                                             };
                         closeBrace.iEndIndex = closeBrace.iStartIndex + brace.OtherBrace.Length;
 
                         if (source.Braces == null)
                         {
                             source.Braces = new List<TextSpan[]>();
                         }
-                        source.Braces.Add(new TextSpan[2] { openBrace, closeBrace });
+                        source.Braces.Add(new[] { openBrace, closeBrace });
                     }
 
                     if (parser.Context.CurrentParseTree.ParserMessages.Count > 0)
                     {
                         foreach (ParserMessage error in parser.Context.CurrentParseTree.ParserMessages)
                         {
-                            TextSpan span = new TextSpan();
+                            var span = new TextSpan();
                             span.iStartLine = span.iEndLine = error.Location.Line;
                             span.iStartIndex = error.Location.Column;
                             span.iEndIndex = error.Location.Position;
                             req.Sink.AddError(req.FileName, error.Message, span, Severity.Error);
                         }
                     }
+                    CreateHiddenRegions(req.Sink, parseTree, source);
                     break;
 
                 case ParseReason.DisplayMemberList:
@@ -190,8 +192,22 @@ namespace CucumberLanguageServices
                     }
                     break;
             }
-
             return new AuthoringScope(source.ParseResult);
+        }
+
+        private void CreateHiddenRegions(AuthoringSink sink, ParseTree parseTree, Source source)
+        {
+            var regionCreator = new RegionCreator
+                                    {
+                                        Root = parseTree.Root,
+                                        Grammar = GherkinGrammar,
+                                        Source = source
+                                    };
+            sink.ProcessHiddenRegions = true;
+            foreach (var textSpan in regionCreator.CreateFeatureSpans())
+            {
+                sink.AddHiddenRegion(textSpan);
+            }
         }
 
         /// <summary>
@@ -251,10 +267,7 @@ namespace CucumberLanguageServices
                 }
                 return VSConstants.S_OK;
             }
-            else
-            {
-                return VSConstants.S_FALSE;
-            }
+            return VSConstants.S_FALSE;
         }
 
         public override ViewFilter CreateViewFilter(CodeWindowManager mgr, IVsTextView newView)

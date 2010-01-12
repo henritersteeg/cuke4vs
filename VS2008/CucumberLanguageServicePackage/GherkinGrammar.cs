@@ -19,6 +19,7 @@ namespace CucumberLanguageServices
 
         private readonly NonTerminal Behavior = new NonTerminal("behavior");
         private readonly NonTerminal Tags = new NonTerminal("tags");
+        public readonly NonTerminal FeatureClause = new NonTerminal("feature-clause");
         private readonly NonTerminal FeatureLine = new NonTerminal("feature-line");
         private readonly NonTerminal Description = new NonTerminal("description");
         private readonly NonTerminal BackgroundClause = new NonTerminal("background-clause");
@@ -116,10 +117,12 @@ namespace CucumberLanguageServices
         private void DefineRules()
         {
             Root = Behavior;
-            Behavior.Rule = Tags + (FeatureLine | FeatureLine + Description) +
+            Behavior.Rule = Tags + FeatureClause +
                             (Scenarios | BackgroundClause + Scenarios);
 
             Tags.Rule = MakeStarRule(Tags, Tag);
+
+            FeatureClause.Rule = FeatureLine | FeatureLine + Description;
 
             FeatureLine.Rule = Language.Feature + Identifier;
 
