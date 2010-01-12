@@ -65,7 +65,7 @@ namespace CucumberLanguageServices
         public static NaturalLanguage GetLanguageFor(string sourceText)
         {
             var match = LanguageRegex.Match(sourceText);
-            return match.Success ? NaturalLanguageFactory.GetLanguage(match.Groups[1].Value) : null;
+            return match.Success ? NaturalLanguageFactory.GetLanguage(match.Groups[1].Value) : NaturalLanguageFactory.DEFAULT_LANGUAGE;
         }
 
         public GherkinGrammar()
