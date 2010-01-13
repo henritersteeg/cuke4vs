@@ -27,7 +27,7 @@ namespace CucumberLanguageServices.i18n
         public static NaturalLanguage GetLanguage(string key)
         {
             var languageText = NaturalLanguageText.GetTextFor(key);
-            return languageText == null ? null : new NaturalLanguage(languageText);
+            return languageText == null ? DEFAULT_LANGUAGE : new NaturalLanguage(languageText);
         }
     }
 }
