@@ -12,43 +12,41 @@ namespace CucumberLanguageServices.Integration
     public class RegionCreator
     {
         public Source Source { get; set; }
-        public GherkinGrammar Grammar { get; set; }
         public ParseTreeNode Root { get; set; }
-        public readonly List<TextSpan> Spans = new List<TextSpan>();
+        public readonly List<TextSpan> Result = new List<TextSpan>();
 
-        public List<TextSpan> CreateFeatureSpans()
+        public void CreateRegionsFor(params NonTerminal[] terms)
         {
-            return FindAllNodesFor(Grammar.FeatureClause, Root);
+            foreach (var term in terms)
+            {
+                CreateSpansFor(term, Root);
+            }
         }
 
-        private List<TextSpan> FindAllNodesFor(NonTerminal terminal, ParseTreeNode node)
+        private void CreateSpansFor(NonTerminal term, ParseTreeNode node)
         {
-            var result = new List<TextSpan>();
-
-            if (node.Term == terminal)
+            if (node.Term == term)
             {
-                TextSpan span = CreateSpanFor(node);
-                result.Add(span);
-                return result;
+                CreateSpanFor(node);
+                return;
             }
             foreach (var childNode in node.ChildNodes)
             {
-                result.AddRange(FindAllNodesFor(terminal, childNode));
+                CreateSpansFor(term, childNode);
             }
-            return result;
         }
 
-        private TextSpan CreateSpanFor(ParseTreeNode node)
+        private void CreateSpanFor(ParseTreeNode node)
         {
             var span = new TextSpan
                            {
-                               iStartLine = node.Span.Location.Line + 1,
+                               iStartLine = node.Span.Location.Line,
                                iStartIndex = node.Span.Location.Column,
                            };
             if (Source != null)
                 Source.GetLineIndexOfPosition(node.Span.EndPosition, out span.iEndLine, out span.iEndIndex);
             Debug.Print("RegionCreator: TextSpan({0}:{1}-{2}:{3}) created for {4}", span.iStartLine, span.iStartIndex, span.iEndLine, span.iEndIndex, node.Term.Name);
-            return span;
+            Result.Add(span);
         }
     }
 }

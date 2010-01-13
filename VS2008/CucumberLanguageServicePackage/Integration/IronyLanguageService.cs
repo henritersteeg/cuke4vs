@@ -200,14 +200,13 @@ namespace CucumberLanguageServices
             var regionCreator = new RegionCreator
                                     {
                                         Root = parseTree.Root,
-                                        Grammar = GherkinGrammar,
                                         Source = source
                                     };
+            regionCreator.CreateRegionsFor(GherkinGrammar.Description, GherkinGrammar.GivenWhenThenClause);
+
             sink.ProcessHiddenRegions = true;
-            foreach (var textSpan in regionCreator.CreateFeatureSpans())
-            {
+            foreach (var textSpan in regionCreator.Result)
                 sink.AddHiddenRegion(textSpan);
-            }
         }
 
         /// <summary>

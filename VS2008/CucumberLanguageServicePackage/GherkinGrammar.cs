@@ -19,18 +19,20 @@ namespace CucumberLanguageServices
 
         private readonly NonTerminal Behavior = new NonTerminal("behavior");
         private readonly NonTerminal Tags = new NonTerminal("tags");
-        public readonly NonTerminal FeatureClause = new NonTerminal("feature-clause");
+        private readonly NonTerminal FeatureClause = new NonTerminal("feature-clause");
         private readonly NonTerminal FeatureLine = new NonTerminal("feature-line");
-        private readonly NonTerminal Description = new NonTerminal("description");
+        public readonly NonTerminal Description = new NonTerminal("description");
         private readonly NonTerminal BackgroundClause = new NonTerminal("background-clause");
         private readonly NonTerminal BackgroundLine = new NonTerminal("background-line");
         private readonly NonTerminal Scenarios = new NonTerminal("scenarios");
+        private readonly NonTerminal ScenarioWithTags = new NonTerminal("scenario-with-tags");
         private readonly NonTerminal ScenarioClause = new NonTerminal("scenario-clause");
         private readonly NonTerminal ScenarioLine = new NonTerminal("scenario-line");
+        private readonly NonTerminal ScenarioOutlineWithTags = new NonTerminal("scenario-outline-with-tags");
         private readonly NonTerminal ScenarioOutlineClause = new NonTerminal("scenario-outline-clause");
         private readonly NonTerminal ScenarioOutlineLine = new NonTerminal("scenario-outline-line");
         private readonly NonTerminal ExamplesClause = new NonTerminal("examples-clause");
-        private readonly NonTerminal GivenWhenThenClause = new NonTerminal("given-when-then-clause");
+        public readonly NonTerminal GivenWhenThenClause = new NonTerminal("given-when-then-clause");
         private readonly NonTerminal GivenWhenThenLine = new NonTerminal("given-when-then-line");
         private readonly NonTerminal Identifiers = new NonTerminal("identifiers");
         private readonly NonTerminal MultilineArg = new NonTerminal("multiline-arg");
@@ -132,15 +134,19 @@ namespace CucumberLanguageServices
 
             BackgroundLine.Rule = Language.Background + Identifiers;
 
-            Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioClause | ScenarioOutlineClause));
+            Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioWithTags | ScenarioOutlineClause));
 
-            ScenarioOutlineClause.Rule = Tags + ScenarioOutlineLine + Identifiers + GivenWhenThenClause + ExamplesClause;
+            ScenarioOutlineWithTags.Rule = Tags + ScenarioOutlineClause;
+
+            ScenarioOutlineClause.Rule = ScenarioOutlineLine + Identifiers + GivenWhenThenClause + ExamplesClause;
 
             ScenarioOutlineLine.Rule = Language.ScenarioOutline + Identifier;
 
             ExamplesClause.Rule = Language.Examples + Table;
 
-            ScenarioClause.Rule = Tags + ScenarioLine + Identifiers + GivenWhenThenClause;
+            ScenarioWithTags.Rule = Tags + ScenarioClause;
+
+            ScenarioClause.Rule = ScenarioLine + Identifiers + GivenWhenThenClause;
 
             ScenarioLine.Rule = Language.Scenario + Identifier;
 
