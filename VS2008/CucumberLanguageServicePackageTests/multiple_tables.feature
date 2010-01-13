@@ -3,7 +3,7 @@ Feature: Addition
   As a math idiot
   I want to be told the sum of two numbers
 
-  Scenario: Add two numbers
+  Scenario Outline: Add two numbers
     Given I have entered 50 into the calculator
     And I have entered 70 into the calculator
     When I press add
@@ -15,7 +15,7 @@ Feature: Addition
     | 2       | 5       | add    | 7      |
     | 0       | 40      | add    | 40     |
 
-  Scenario: Add three numbers
+  Scenario Outline: Add three numbers
     Given I have entered 25 into the calculator
     And I have entered 12 into the calculator
     And I have entered 13 into the calculator

@@ -88,10 +88,21 @@ namespace CucumberLanguageServices
 
             if (CurrentGrammar == null)
                 new GherkinGrammar(Language); // Hack!
+
+            DeclareKeyTerms();
             DeclareTerminals();
             DeclareNonTerminals();
             DefineRules();
             DefineKeywords();
+        }
+
+        private void DeclareKeyTerms()
+        {
+            KeyTerms.Clear();
+            foreach (var keyTerm in Language.KeyTerms)
+            {
+                KeyTerms.Add(keyTerm.Text, keyTerm);
+            }
         }
 
         public void SetLanguageFor(string sourceCode)

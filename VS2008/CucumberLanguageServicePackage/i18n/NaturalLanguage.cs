@@ -13,6 +13,8 @@ namespace CucumberLanguageServices.i18n
         public BnfTerm Examples { get; private set; }
         public BnfTerm Steps { get; private set; }
 
+        public readonly KeyTermList KeyTerms = new KeyTermList();
+
         public NaturalLanguage(NaturalLanguageText languageText)
         {
             Code = languageText.Code;
@@ -24,9 +26,12 @@ namespace CucumberLanguageServices.i18n
             Steps = CreateTerm("Step", languageText.Step);
         }
 
-        private static BnfTerm CreateTerm(string name, string tokens)
+        private BnfTerm CreateTerm(string name, string tokens)
         {
-            return new LanguageTokenizer { Name = name, Tokens = tokens }.CreateIronyToken();
+            var tokenizer = new LanguageTokenizer { Name = name, Tokens = tokens };
+            var token = tokenizer.CreateIronyToken();
+            KeyTerms.AddRange(tokenizer.KeyTerms);
+            return token;
         }
 
         public override string ToString()

@@ -69,6 +69,7 @@ namespace CucumberLanguageServices
                                                         Name);
                 preferences.Init();
                 preferences.AutoOutlining = true;
+                preferences.AutoListMembers = true;
             }
             return preferences;
         }
@@ -198,7 +199,7 @@ namespace CucumberLanguageServices
                     }
                     break;
             }
-            return new AuthoringScope(source.ParseResult);
+            return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar};
         }
 
         private void AddMessages(Source source, AuthoringSink sink, ParseTree parseTree)
@@ -207,7 +208,11 @@ namespace CucumberLanguageServices
             foreach (var message in messages)
             {
                 var line = source.GetLine(message.Location.Line);
-                var nextSpace = line.IndexOfAny(" \t\n\r".ToCharArray(), message.Location.Column + 1);
+                var nextSpace = line.Length;
+                
+                if (line.Length > message.Location.Column)
+                    nextSpace = line.IndexOfAny(" \t\n\r".ToCharArray(), message.Location.Column + 1);
+                
                 if (nextSpace == -1)
                     nextSpace = line.Length;
 

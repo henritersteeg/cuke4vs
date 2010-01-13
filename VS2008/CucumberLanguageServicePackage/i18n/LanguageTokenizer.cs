@@ -10,10 +10,12 @@ namespace CucumberLanguageServices.i18n
     {
         public string Name { get; set; }
         public string Tokens { get; set; }
+        public KeyTerm[] KeyTerms { get; set; }
 
         public KeyTerm[] CreateKeyTerms()
         {
-            return Tokens != null ? Tokens.Split('|').Distinct().Select(token => CreateKeyTerm(token)).ToArray() : new KeyTerm[] { };
+            KeyTerms = Tokens != null ? Tokens.Split('|').Distinct().Select(token => CreateKeyTerm(token)).ToArray() : new KeyTerm[] { };
+            return KeyTerms;
         }
 
         private KeyTerm CreateKeyTerm(string token)

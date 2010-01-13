@@ -199,7 +199,5 @@ namespace CucumberLanguageServicePackageTests
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
             Assert.That(StepCount(tokens), Is.EqualTo(6), "Given/When/Then");
         }
-
-
     }
 }

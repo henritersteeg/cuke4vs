@@ -13,18 +13,20 @@ namespace CucumberLanguageServices
         public IList<CucumberLanguageServices.Declaration> FindCompletions(object result, int line, int col)
         {
             // Used for intellisense.
-            List<CucumberLanguageServices.Declaration> declarations = new List<CucumberLanguageServices.Declaration>();
+            var declarations = new List<CucumberLanguageServices.Declaration>();
+
+            var grammar = result as Grammar;
+            if (grammar == null)
+                return declarations;
 
             // Add keywords defined by grammar
-            foreach (KeyTerm key in Configuration.GherkinGrammar.KeyTerms.Values)
+            foreach (KeyTerm key in grammar.KeyTerms.Values)
             {
                 if (key.OptionIsSet(TermOptions.IsKeyword))
                 {
-                    declarations.Add(new Declaration("", key.Name, 206, key.Name));
+                    declarations.Add(new Declaration(key.Name, key.Text, 206, key.Text));
                 }
             }
-
-            declarations.Sort();
             return declarations;
         }
 
