@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using CucumberLanguageServices.Integration;
@@ -112,7 +113,12 @@ namespace CucumberLanguageServices
                     // Store results in the AuthoringScope object.
                     InitParser(req.Text);
                     var parseTree = parser.Parse(req.Text, req.FileName);
-                    if (parseTree == null || parseTree.Root == null)
+                    if (parseTree == null)
+                        return null;
+
+                    AddMessages(source, req.Sink, parseTree);
+
+                    if (parseTree.Root == null)
                         return null;
 
                     var node = (AstNode)parseTree.Root.AstNode;
@@ -193,6 +199,43 @@ namespace CucumberLanguageServices
                     break;
             }
             return new AuthoringScope(source.ParseResult);
+        }
+
+        private void AddMessages(Source source, AuthoringSink sink, ParseTree parseTree)
+        {
+            var messages = parseTree.ParserMessages;
+            foreach (var message in messages)
+            {
+                var line = source.GetLine(message.Location.Line);
+                var nextSpace = line.IndexOfAny(" \t\n\r".ToCharArray(), message.Location.Column + 1);
+                if (nextSpace == -1)
+                    nextSpace = line.Length;
+
+                var span = new TextSpan
+                                {
+                                    iStartLine = message.Location.Line,
+                                    iStartIndex = message.Location.Column,
+                                    iEndLine = message.Location.Line,
+                                    iEndIndex = nextSpace
+                                };
+                
+                var severity = Severity.Hint;
+                switch (message.Level)
+                {
+                    case ParserErrorLevel.Info:
+                        severity = Severity.Hint;
+                        break;
+
+                    case ParserErrorLevel.Warning:
+                        severity = Severity.Warning;
+                        break;
+
+                    case ParserErrorLevel.Error:
+                        severity = Severity.Error;
+                        break;
+                }
+                sink.AddError(source.GetFilePath(), message.Message, span, severity);
+            }
         }
 
         private void CreateHiddenRegions(AuthoringSink sink, ParseTree parseTree, Source source)
