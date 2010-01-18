@@ -32,6 +32,10 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>c:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
+    </Reference>
     <Reference Include="Irony, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Irony.dll</HintPath>
@@ -84,7 +88,52 @@
     <Compile Include="Integration\Package.cs" />
     <Compile Include="Integration\RegionCreator.cs" />
     <Compile Include="Integration\Resolver.cs" />
+    <Compile Include="Integration\SolutionProcessor.cs" />
     <Compile Include="Integration\Source.cs" />
+    <Compile Include="Integration\StepDefinition.cs" />
+    <Compile Include="Integration\StepProvider.cs" />
+    <Compile Include="LinqToCodeModel\CodeElementIterator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Enums\ClassModifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Enums\FunctionKind.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Enums\FunctionModifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\CodeClassExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\CodeFunctionExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\CodeInterfaceExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\CodelModelExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\CodeNamespaceExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\EnumerableExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\Extensions\FileCodelModelExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinqToCodeModel\QueryableCodeModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProductivityPackage\Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="ProductivityPackage\Extensions\IServiceProviderExtensions.cs" />
+    <Compile Include="ProductivityPackage\Extensions\IVsUIShellExtensions.cs" />
+    <Compile Include="ProductivityPackage\Iterators\HierarchyNode.cs" />
+    <Compile Include="ProductivityPackage\Iterators\HierarchyNodeIterator.cs" />
+    <Compile Include="ProductivityPackage\Iterators\NativeMethods.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

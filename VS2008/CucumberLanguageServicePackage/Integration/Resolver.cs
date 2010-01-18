@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CucumberLanguageServices.Integration;
 using Irony.Parsing;
 
 namespace CucumberLanguageServices
@@ -10,7 +11,7 @@ namespace CucumberLanguageServices
         #region IASTResolver Members
 
 
-        public IList<CucumberLanguageServices.Declaration> FindCompletions(object result, int line, int col)
+        public IList<CucumberLanguageServices.Declaration> FindCompletions(StepProvider stepProvider, object result, int line, int col)
         {
             // Used for intellisense.
             var declarations = new List<CucumberLanguageServices.Declaration>();
@@ -26,6 +27,13 @@ namespace CucumberLanguageServices
                 {
                     declarations.Add(new Declaration(key.Name, key.Text, 206, key.Text));
                 }
+            }
+            if (stepProvider == null)
+                return declarations;
+
+            foreach (var step in stepProvider.StepDefinitions)
+            {
+                declarations.Add(new Declaration(step.Value, step.Value, 18 /* Method */, step.Value));
             }
             return declarations;
         }

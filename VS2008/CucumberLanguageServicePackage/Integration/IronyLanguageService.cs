@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Package;
 
@@ -16,10 +17,22 @@ namespace CucumberLanguageServices
     {
         private GherkinGrammar GherkinGrammar;
         private Parser parser;
+        private readonly StepProvider _stepProvider = new StepProvider();
 
         public IronyLanguageService()
         {
             InitParser(string.Empty);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            var processor = new SolutionProcessor
+                                {
+                                    Solution = GetService(typeof (SVsSolution)) as IVsSolution,
+                                    StepProvider = _stepProvider
+                                };
+            processor.Process();
         }
 
         public override Colorizer GetColorizer(IVsTextLines buffer)
@@ -120,7 +133,7 @@ namespace CucumberLanguageServices
                     AddMessages(source, req.Sink, parseTree);
 
                     if (parseTree.Root == null)
-                        return null;
+                        return null; 
 
                     var node = (AstNode)parseTree.Root.AstNode;
                     source.ParseResult = node;
@@ -199,7 +212,7 @@ namespace CucumberLanguageServices
                     }
                     break;
             }
-            return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar};
+            return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar, StepProvider = _stepProvider};
         }
 
         private void AddMessages(Source source, AuthoringSink sink, ParseTree parseTree)

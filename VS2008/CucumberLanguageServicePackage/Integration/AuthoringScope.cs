@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CucumberLanguageServices.Integration;
 using Irony.Parsing;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -10,6 +11,7 @@ namespace CucumberLanguageServices
     public class AuthoringScope : Microsoft.VisualStudio.Package.AuthoringScope
     {
         public Grammar Grammar { get; set; }
+        public StepProvider StepProvider { get; set; }
 
         public AuthoringScope(object parseResult)
         {
@@ -39,7 +41,7 @@ namespace CucumberLanguageServices
             switch (reason)
             {
                 case ParseReason.CompleteWord:
-                    declarations = resolver.FindCompletions(Grammar, line, col);
+                    declarations = resolver.FindCompletions(StepProvider, Grammar, line, col);
                     break;
                 case ParseReason.DisplayMemberList:
                 case ParseReason.MemberSelect:
