@@ -79,6 +79,7 @@
     <Compile Include="Integration\Configuration.cs" />
     <Compile Include="Integration\Declaration.cs" />
     <Compile Include="Integration\Declarations.cs" />
+    <Compile Include="Integration\GotoCreator.cs" />
     <Compile Include="Integration\IASTResolver.cs" />
     <Compile Include="Integration\IronyViewFilter.cs" />
     <Compile Include="Integration\IronyLanguageService.cs" />

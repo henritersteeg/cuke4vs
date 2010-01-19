@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using EnvDTE;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CucumberLanguageServices.Integration
 {
@@ -11,7 +12,8 @@ namespace CucumberLanguageServices.Integration
     {
         public string Value { get; private set; }
         public ProjectItem ProjectItem { get; set; }
-        public int Offset { get; set; }
+        public TextPoint StartPoint { get; set; }
+        public TextPoint EndPoint { get; set; }
 
         private Regex _valueRegex;
 
@@ -25,7 +27,7 @@ namespace CucumberLanguageServices.Integration
             return string.Format("Step[{0}] in {1}, offset {2}", 
                                  Value, 
                                  (ProjectItem != null ? ProjectItem.Name : "<unknown>"),
-                                 Offset);
+                                 StartPoint.AbsoluteCharOffset);
         }
 
         public bool Matches(string stepIdentifier)

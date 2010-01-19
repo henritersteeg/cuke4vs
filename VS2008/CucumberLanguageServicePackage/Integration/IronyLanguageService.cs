@@ -122,8 +122,10 @@ namespace CucumberLanguageServices
         {
             Debug.Print("ParseSource at ({0}:{1}), reason {2} (lang={3})", req.Line, req.Col, req.Reason, GherkinGrammar.GetLanguageFor(req.Text));
             var source = (Source)GetSource(req.FileName);
+            ParseTreeNode root = null;
             switch (req.Reason)
             {
+                case ParseReason.Goto:
                 case ParseReason.Check:
                     // This is where you perform your syntax highlighting.
                     // Parse entire source as given in req.Text.
@@ -136,36 +138,11 @@ namespace CucumberLanguageServices
                     AddMessages(source, req.Sink, parseTree);
 
                     if (parseTree.Root == null)
-                        return null; 
+                        return null;
 
+                    root = parseTree.Root;
                     var node = (AstNode)parseTree.Root.AstNode;
                     source.ParseResult = node;
-                    // Used for brace matching.
-                    TokenStack braces = parser.Context.OpenBraces;
-                    foreach (Token brace in braces)
-                    {
-                        var openBrace = new TextSpan
-                                            {
-                                                iStartLine = brace.Location.Line,
-                                                iStartIndex = brace.Location.Column,
-                                                iEndLine = brace.Location.Line
-                                            };
-                        openBrace.iEndIndex = openBrace.iStartIndex + brace.Length;
-
-                        var closeBrace = new TextSpan
-                                             {
-                                                 iStartLine = brace.OtherBrace.Location.Line,
-                                                 iStartIndex = brace.OtherBrace.Location.Column,
-                                                 iEndLine = brace.OtherBrace.Location.Line
-                                             };
-                        closeBrace.iEndIndex = closeBrace.iStartIndex + brace.OtherBrace.Length;
-
-                        if (source.Braces == null)
-                        {
-                            source.Braces = new List<TextSpan[]>();
-                        }
-                        source.Braces.Add(new[] { openBrace, closeBrace });
-                    }
 
                     if (parser.Context.CurrentParseTree.ParserMessages.Count > 0)
                     {
@@ -216,7 +193,7 @@ namespace CucumberLanguageServices
                     }
                     break;
             }
-            return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar, StepProvider = _stepProvider};
+            return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar, Root = root, StepProvider = _stepProvider};
         }
 
         private void CreateWarningsForUnknownSteps(string path, AuthoringSink sink, ParseTree parseTree, Source source)

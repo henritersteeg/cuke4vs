@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Package;
 using Microsoft.Samples.LinqToCodeModel.Extensions;
 using EnvDTE;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CucumberLanguageServices.Integration
 {
@@ -37,7 +38,8 @@ namespace CucumberLanguageServices.Integration
                     _stepDefinitions.Add(new StepDefinition(Unescape(attribute.Value))
                     {
                         ProjectItem = attribute.ProjectItem,
-                        Offset = attribute.StartPoint.AbsoluteCharOffset
+                        StartPoint = attribute.StartPoint,
+                        EndPoint = attribute.EndPoint
                     });
 
                     Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
