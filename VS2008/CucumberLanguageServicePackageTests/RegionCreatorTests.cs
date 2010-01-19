@@ -17,7 +17,6 @@ namespace CucumberLanguageServicePackageTests
         public void Should_create_a_region_for_the_feature_and_description()
         {
             // Given
-
             var grammar = new GherkinGrammar();
             var parser = new Parser(grammar);
             var parseTree = parser

@@ -179,6 +179,7 @@ namespace CucumberLanguageServices
                         }
                     }
                     CreateHiddenRegions(req.Sink, parseTree, source);
+                    CreateWarningsForUnknownSteps(req.FileName, req.Sink, parseTree, source);
                     break;
 
                 case ParseReason.DisplayMemberList:
@@ -216,6 +217,21 @@ namespace CucumberLanguageServices
                     break;
             }
             return new AuthoringScope(source.ParseResult) { Grammar = GherkinGrammar, StepProvider = _stepProvider};
+        }
+
+        private void CreateWarningsForUnknownSteps(string path, AuthoringSink sink, ParseTree parseTree, Source source)
+        {
+            var warningCreator = new WarningCreator
+                                     {
+                                         Grammar = GherkinGrammar,
+                                         Root = parseTree.Root,
+                                         Source = source,
+                                         StepProvider = _stepProvider
+                                     };
+            warningCreator.CreateSpansForUndefinedSteps();
+
+            foreach (var textSpan in warningCreator.Result)
+                sink.AddError(path, "Step not (yet) defined.", textSpan, Severity.Warning);
         }
 
         private void AddMessages(Source source, AuthoringSink sink, ParseTree parseTree)

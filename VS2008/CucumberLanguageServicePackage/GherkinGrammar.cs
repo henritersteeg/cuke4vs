@@ -34,6 +34,7 @@ namespace CucumberLanguageServices
         private readonly NonTerminal ExamplesClause = new NonTerminal("examples-clause");
         public readonly NonTerminal GivenWhenThenClause = new NonTerminal("given-when-then-clause");
         private readonly NonTerminal GivenWhenThenLine = new NonTerminal("given-when-then-line");
+        public readonly NonTerminal StepIdentifierWithOptionalArgument = new NonTerminal("step-identifier-with-optional-argument");
         private readonly NonTerminal Identifiers = new NonTerminal("identifiers");
         private readonly NonTerminal MultilineArg = new NonTerminal("multiline-arg");
 
@@ -163,7 +164,9 @@ namespace CucumberLanguageServices
 
             GivenWhenThenClause.Rule = MakeStarRule(GivenWhenThenClause, GivenWhenThenLine);
 
-            GivenWhenThenLine.Rule = Language.Steps + (Identifier | Identifier + MultilineArg);
+            GivenWhenThenLine.Rule = Language.Steps + StepIdentifierWithOptionalArgument;
+            
+            StepIdentifierWithOptionalArgument.Rule = Identifier | Identifier + MultilineArg;
 
             MultilineArg.Rule = Table | PyString;
 

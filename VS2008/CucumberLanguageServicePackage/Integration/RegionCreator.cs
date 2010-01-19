@@ -9,44 +9,22 @@ using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CucumberLanguageServices.Integration
 {
-    public class RegionCreator
+    public class RegionCreator : ParseTreeVisitor
     {
         public Source Source { get; set; }
-        public ParseTreeNode Root { get; set; }
         public readonly List<TextSpan> Result = new List<TextSpan>();
 
         public void CreateRegionsFor(params NonTerminal[] terms)
         {
-            foreach (var term in terms)
-            {
-                CreateSpansFor(term, Root);
-            }
+            Process(terms);
         }
 
-        private void CreateSpansFor(NonTerminal term, ParseTreeNode node)
+        protected override void Visit(ParseTreeNode node)
         {
-            if (node.Term == term)
-            {
-                CreateSpanFor(node);
-                return;
-            }
-            foreach (var childNode in node.ChildNodes)
-            {
-                CreateSpansFor(term, childNode);
-            }
-        }
-
-        private void CreateSpanFor(ParseTreeNode node)
-        {
-            var span = new TextSpan
-                           {
-                               iStartLine = node.Span.Location.Line,
-                               iStartIndex = node.Span.Location.Column,
-                           };
-            if (Source != null)
-                Source.GetLineIndexOfPosition(node.Span.EndPosition, out span.iEndLine, out span.iEndIndex);
+            var span = CreateSpanFor(node.Span, Source);
             Debug.Print("RegionCreator: TextSpan({0}:{1}-{2}:{3}) created for {4}", span.iStartLine, span.iStartIndex, span.iEndLine, span.iEndIndex, node.Term.Name);
             Result.Add(span);
         }
+
     }
 }
