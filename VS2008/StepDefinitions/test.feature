@@ -5,5 +5,8 @@
 
   Scenario: bla
   Given     nothing
+  And       unknown
+  And       this
+  Then      that
   
   

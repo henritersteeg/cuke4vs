@@ -48,9 +48,12 @@ namespace CucumberLanguageServices
             GherkinGrammar = GherkinGrammar.CreateFor(sourceText);
             parser = new Parser(GherkinGrammar);
             if (scanner != null)
+            {
                 scanner.SetParser(GherkinGrammar);
+                scanner.StepProvider = _stepProvider;
+            }
             else
-                scanner = new LineScanner(GherkinGrammar);
+                scanner = new LineScanner(GherkinGrammar) { StepProvider = _stepProvider};
         }
 
         #region Custom Colors

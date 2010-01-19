@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio.Package;
 using Irony.Parsing;
 using TokenColor=Irony.Parsing.TokenColor;
@@ -10,27 +11,30 @@ namespace CucumberLanguageServices
 {
     public class LineScanner : IScanner
     {
-        private static TokenEditorInfo DEFAULT_EDITOR_INFO = new TokenEditorInfo(TokenType.Text, TokenColor.Text, TokenTriggers.None); 
-        private Parser parser;
+        private static readonly TokenEditorInfo DEFAULT_EDITOR_INFO = new TokenEditorInfo(TokenType.Text, TokenColor.Text, TokenTriggers.None);
+        private GherkinGrammar _grammar;
+        private Parser _parser;
+        public StepProvider StepProvider { get; set; }
 
         public LineScanner(GherkinGrammar GherkinGrammar)
         {
             Debug.Print("LineScanner constructed using {0}", GherkinGrammar);
+            _grammar = GherkinGrammar;
             SetParser(GherkinGrammar);
         }
 
         public void SetParser(GherkinGrammar GherkinGrammar)
         {
-            parser = new Parser(GherkinGrammar) {Context = {Mode = ParseMode.VsLineScan}};
+            _parser = new Parser(GherkinGrammar) {Context = {Mode = ParseMode.VsLineScan}};
         }
 
         public bool ScanTokenAndProvideInfoAboutIt(TokenInfo tokenInfo, ref int state)
         {
-            //Debug.Print("LineScanner.ScanToken({1}) using {0}", parser != null && parser.Language != null ? parser.Language.Grammar : null, state);
+            //Debug.Print("LineScanner.ScanToken({1}) using {0}", _parser != null && _parser.Language != null ? _parser.Language.Grammar : null, state);
             // Reads each token in a source line and performs syntax coloring.  It will continue to
             // be called for the source until false is returned.
-            //Debug.Print("reading token from {0}", parser.Context != null && parser.Context.Source != null ? parser.Context.Source.Text : "<null>");
-            Token token = parser.Scanner.VsReadToken(ref state);
+            //Debug.Print("reading token from {0}", _parser.Context != null && _parser.Context.Source != null ? _parser.Context.Source.Text : "<null>");
+            Token token = _parser.Scanner.VsReadToken(ref state);
 
             // !EOL and !EOF
             if (token != null && token.Terminal != GherkinGrammar.CurrentGrammar.Eof && token.Category != TokenCategory.Error && token.Length > 0)
@@ -67,20 +71,26 @@ namespace CucumberLanguageServices
                 (Microsoft.VisualStudio.Package.TokenTriggers)editorInfo.Triggers;
         }
 
-        private static void SetColorAndType(Token token, TokenInfo tokenInfo)
+        private void SetColorAndType(Token token, TokenInfo tokenInfo)
         {
             var editorInfo = token.EditorInfo ?? DEFAULT_EDITOR_INFO;
-        
+
             tokenInfo.Color = (Microsoft.VisualStudio.Package.TokenColor)editorInfo.Color;
             tokenInfo.Type = (Microsoft.VisualStudio.Package.TokenType)editorInfo.Type;
 
+            if (token.Terminal != _grammar.Identifier || StepProvider == null)
+                return;
+            if (!StepProvider.HasMatchFor(token.Text)) return;
+            
+            tokenInfo.Color = Microsoft.VisualStudio.Package.TokenColor.Comment;
+            tokenInfo.Type = Microsoft.VisualStudio.Package.TokenType.Identifier;
         }
 
         public void SetSource(string source, int offset)
         {
             // Stores line of source to be used by ScanTokenAndProvideInfoAboutIt.
             Debug.Print("LineScanner.SetSource({0},{1})", source, offset);
-            parser.Scanner.VsSetSource(source, offset);
+            _parser.Scanner.VsSetSource(source, offset);
         }
     }
 }

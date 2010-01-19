@@ -18,36 +18,57 @@ namespace CucumberLanguageServices.Integration
                                                                    "Cuke4Nuke.Framework.ThenAttribute"
                                                                };
 
-        private readonly List<StepDefinition> _stepDefinitions = new List<StepDefinition>();
+        protected readonly List<StepDefinition> _stepDefinitions = new List<StepDefinition>();
 
         public void ProcessItem(ProjectItem item)
         {
             if (item == null || item.FileCodeModel == null)
                 return;
 
-            RemoveAttributesFor(item);
-
-            foreach (var attribute in item.FileCodeModel.GetIEnumerable<CodeAttribute>())
+            lock(this)
             {
-                if (!SUPPORTED_ATTRIBUTES.Contains(attribute.FullName))
-                    continue;
+                RemoveAttributesFor(item);
 
-                _stepDefinitions.Add(new StepDefinition
-                                    {
-                                        Value = Unescape(attribute.Value),
-                                        ProjectItem = attribute.ProjectItem,
-                                        Offset = attribute.StartPoint.AbsoluteCharOffset
-                                    });
+                foreach (var attribute in item.FileCodeModel.GetIEnumerable<CodeAttribute>())
+                {
+                    if (!SUPPORTED_ATTRIBUTES.Contains(attribute.FullName))
+                        continue;
 
-                Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
-                            attribute.FullName, attribute.Value, attribute.StartPoint.Line, attribute.StartPoint.DisplayColumn,
-                            Unescape(attribute.Value));
+                    _stepDefinitions.Add(new StepDefinition(Unescape(attribute.Value))
+                    {
+                        ProjectItem = attribute.ProjectItem,
+                        Offset = attribute.StartPoint.AbsoluteCharOffset
+                    });
+
+                    Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
+                                attribute.FullName, attribute.Value, attribute.StartPoint.Line, attribute.StartPoint.DisplayColumn,
+                                Unescape(attribute.Value));
+                }
             }
+        }
+
+        public StepDefinition[] FindMatchesFor(string stepIdentifier)
+        {
+            lock(this)
+            {
+                return _stepDefinitions.Where(step => step.Matches(stepIdentifier)).ToArray();
+            }
+        }
+
+        public bool HasMatchFor(string stepIdentifier)
+        {
+            return FindMatchesFor(stepIdentifier).Length > 0;
         }
 
         public IEnumerable<StepDefinition> StepDefinitions
         {
-            get { return _stepDefinitions.OrderBy(step => step.Value); }
+            get
+            {
+                lock(this)
+                {
+                    return _stepDefinitions.OrderBy(step => step.Value).ToList();
+                }
+            }
         }
 
         private void RemoveAttributesFor(ProjectItem projectItem)
