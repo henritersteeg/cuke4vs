@@ -12,6 +12,7 @@
   Scenario: twee
      Given  nothing too
      And    My phone number is 1234 and my name is 'Henri'
+     And    say 'aaa'
      
      
    

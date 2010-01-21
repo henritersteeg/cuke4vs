@@ -81,9 +81,13 @@ namespace CucumberLanguageServices
                 return;
             if ((_previousToken == null) || (!_grammar.Language.StepTerms.Contains(_previousToken.KeyTerm)))
                 return;
+
+            if (token.Text.Length == 1)
+                tokenInfo.Trigger = Microsoft.VisualStudio.Package.TokenTriggers.MemberSelect;
+
             var stepDefinitions = StepProvider.FindMatchesFor(token.Text);
             if (stepDefinitions == null || stepDefinitions.Length == 0) return;
-
+            
             var groups = stepDefinitions[0].Match(token.Text).Groups;
             if (groups.Count <= 1)
             {
@@ -102,6 +106,7 @@ namespace CucumberLanguageServices
                                            {
                                                StartIndex = startIndex,
                                                EndIndex = startIndex + group.Length - 1,
+                                               Color = Microsoft.VisualStudio.Package.TokenColor.Number,
                                                Type = Microsoft.VisualStudio.Package.TokenType.String
                                            };
                 _queuedTokens.Enqueue(captureTokenInfo);
