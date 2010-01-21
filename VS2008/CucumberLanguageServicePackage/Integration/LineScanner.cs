@@ -87,12 +87,12 @@ namespace CucumberLanguageServices
 
             var stepDefinitions = StepProvider.FindMatchesFor(token.Text);
             if (stepDefinitions == null || stepDefinitions.Length == 0) return;
-            
-            var groups = stepDefinitions[0].Match(token.Text).Groups;
+
+            var stepDefinition = stepDefinitions[0];
+            var groups = stepDefinition.Match(token.Text).Groups;
             if (groups.Count <= 1)
             {
-                tokenInfo.Color = Microsoft.VisualStudio.Package.TokenColor.Comment;
-                tokenInfo.Type = Microsoft.VisualStudio.Package.TokenType.Identifier;
+                SetIdentifierColorAndType(tokenInfo, stepDefinition);
                 return;
             }
             var lastEndIndex = tokenInfo.StartIndex - 1;
@@ -101,7 +101,7 @@ namespace CucumberLanguageServices
                 var group = groups[i];
                 var startIndex = tokenInfo.StartIndex + group.Index;
                 if (startIndex > lastEndIndex + 1)
-                    QueueIdentifierToken(lastEndIndex + 1, startIndex - 1);
+                    QueueIdentifierToken(stepDefinition, lastEndIndex + 1, startIndex - 1);
                 var captureTokenInfo = new TokenInfo
                                            {
                                                StartIndex = startIndex,
@@ -113,19 +113,24 @@ namespace CucumberLanguageServices
                 lastEndIndex = captureTokenInfo.EndIndex;
             }
             if (lastEndIndex < tokenInfo.EndIndex)
-                QueueIdentifierToken(lastEndIndex + 1, tokenInfo.EndIndex);
+                QueueIdentifierToken(stepDefinition, lastEndIndex + 1, tokenInfo.EndIndex);
             UpdateTokenInfoFromQueue(tokenInfo);            
         }
 
-        private void QueueIdentifierToken(int startIndex, int endIndex)
+        private static void SetIdentifierColorAndType(TokenInfo tokenInfo, StepDefinition stepDefinition)
+        {
+            tokenInfo.Color = stepDefinition.IsPending? Microsoft.VisualStudio.Package.TokenColor.String : Microsoft.VisualStudio.Package.TokenColor.Comment;
+            tokenInfo.Type = Microsoft.VisualStudio.Package.TokenType.Identifier;
+        }
+
+        private void QueueIdentifierToken(StepDefinition stepDefinition, int startIndex, int endIndex)
         {
             var tokenInfo = new TokenInfo
                                 {
                                     StartIndex = startIndex,
-                                    EndIndex = endIndex,
-                                    Type = Microsoft.VisualStudio.Package.TokenType.Identifier,
-                                    Color = Microsoft.VisualStudio.Package.TokenColor.Comment
+                                    EndIndex = endIndex
                                 };
+            SetIdentifierColorAndType(tokenInfo, stepDefinition);
             _queuedTokens.Enqueue(tokenInfo);
         }
 

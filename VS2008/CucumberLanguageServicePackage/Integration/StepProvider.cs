@@ -7,17 +7,18 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Package;
 using Microsoft.Samples.LinqToCodeModel.Extensions;
 using EnvDTE;
-using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CucumberLanguageServices.Integration
 {
     public class StepProvider
     {
-        public static readonly string[] SUPPORTED_ATTRIBUTES = {
-                                                                   "Cuke4Nuke.Framework.GivenAttribute",
-                                                                   "Cuke4Nuke.Framework.WhenAttribute",
-                                                                   "Cuke4Nuke.Framework.ThenAttribute"
-                                                               };
+        public static readonly string[] STEP_ATTRIBUTES = {
+                                                               "Cuke4Nuke.Framework.GivenAttribute",
+                                                               "Cuke4Nuke.Framework.WhenAttribute",
+                                                               "Cuke4Nuke.Framework.ThenAttribute"
+                                                           };
+
+        public static readonly string PENDING_ATTRIBUTE = "Cuke4Nuke.Framework.PendingAttribute";
 
         protected readonly List<StepDefinition> _stepDefinitions = new List<StepDefinition>();
 
@@ -32,21 +33,31 @@ namespace CucumberLanguageServices.Integration
 
                 foreach (var attribute in item.FileCodeModel.GetIEnumerable<CodeAttribute>())
                 {
-                    if (!SUPPORTED_ATTRIBUTES.Contains(attribute.FullName))
-                        continue;
+                    var parent = attribute.Parent as CodeElement;
 
-                    _stepDefinitions.Add(new StepDefinition(Unescape(attribute.Value))
-                    {
-                        ProjectItem = attribute.ProjectItem,
-                        StartPoint = attribute.StartPoint,
-                        EndPoint = attribute.EndPoint
-                    });
-
-                    Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
-                                attribute.FullName, attribute.Value, attribute.StartPoint.Line, attribute.StartPoint.DisplayColumn,
-                                Unescape(attribute.Value));
+                    Debug.Print("StepProvider: Add '{0}', parent='{1}'", attribute.Name, parent != null ? parent.Name : "<null>");
+                    
+                    AddStep(attribute);
                 }
             }
+        }
+
+        private void AddStep(CodeAttribute attribute)
+        {
+            if (!STEP_ATTRIBUTES.Contains(attribute.FullName))
+                return;
+
+            _stepDefinitions.Add(new StepDefinition(Unescape(attribute.Value))
+                                     {
+                                         ProjectItem = attribute.ProjectItem,
+                                         StartPoint = attribute.StartPoint,
+                                         EndPoint = attribute.EndPoint,
+                                         Function = attribute.Parent as CodeFunction
+                                     });
+
+            Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
+                        attribute.FullName, attribute.Value, attribute.StartPoint.Line, attribute.StartPoint.DisplayColumn,
+                        Unescape(attribute.Value));
         }
 
         public StepDefinition[] FindMatchesFor(string stepIdentifier)

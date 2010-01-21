@@ -14,6 +14,23 @@ namespace CucumberLanguageServices.Integration
         public ProjectItem ProjectItem { get; set; }
         public TextPoint StartPoint { get; set; }
         public TextPoint EndPoint { get; set; }
+        public CodeFunction Function { get; set; }
+
+        public bool IsPending
+        {
+            get
+            {
+                if (Function == null) return true;
+                foreach (CodeAttribute attribute in Function.Attributes)
+                {
+                    if (attribute == null || attribute.FullName == null)
+                        continue;
+                    if (attribute.FullName.Equals(StepProvider.PENDING_ATTRIBUTE))
+                        return true;
+                }
+                return false;
+            }
+        }
 
         private Regex _valueRegex;
 

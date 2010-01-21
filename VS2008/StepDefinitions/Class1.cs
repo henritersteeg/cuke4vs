@@ -31,7 +31,7 @@ namespace StepDefinitions
         [Given("^My phone number is (\\d+) and my name is '(.*)'$")]
         public void IAm(int phoneNumber, string name) { }
 
-        [Given("say '(.*)'")]
+        [Given("say '(.*)'"), Pending]
         public void Say(string text) { }
     }
 }
