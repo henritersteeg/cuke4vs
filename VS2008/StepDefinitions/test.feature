@@ -11,7 +11,7 @@
      
   Scenario: twee
      Given  nothing too
-     When   Renzo wordt gek
+     And    My phone number is 1234 and my name is 'Henri'
      
      
    

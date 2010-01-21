@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CucumberLanguageServices;
+using CucumberLanguageServices.Integration;
 using Irony.Parsing;
 using Microsoft.VisualStudio.Package;
 using NUnit.Framework;
@@ -83,11 +84,33 @@ namespace CucumberLanguageServicePackageTests
             Assert.That(tokens[0].Type, Is.EqualTo(TokenType.Keyword), "Scenario");
             Assert.That(tokens[1].Type, Is.EqualTo(TokenType.Identifier), "Identifier");
         }
+
+        [Test]
+        public void Should_split_stepIdentifier_when_step_has_arguments()
+        {
+            // Given
+            var stepProvider = new StepProviderToTest(new StepDefinition("My phone number is (\\d+) and my name is '(.*)'"));
+            var scanner = new LineScanner(new GherkinGrammar()) { StepProvider = stepProvider};
+            
+            // When
+            var tokens = ReadTokens(scanner, "Given My phone number is 555 and my name is 'Henri'");
+
+            // Then
+            Assert.That(tokens, Has.Length(6));
+            Assert.That(tokens[0].Type, Is.EqualTo(TokenType.Keyword), "Given");
+            Assert.That(tokens[1].Type, Is.EqualTo(TokenType.Identifier), tokens[1].Token.ToString());
+            Assert.That(tokens[2].Type, Is.EqualTo(TokenType.String), tokens[2].Token.ToString());
+            Assert.That(tokens[3].Type, Is.EqualTo(TokenType.Identifier), tokens[3].Token.ToString());
+            Assert.That(tokens[4].Type, Is.EqualTo(TokenType.String), tokens[4].Token.ToString());
+            Assert.That(tokens[5].Type, Is.EqualTo(TokenType.Identifier), tokens[5].Token.ToString());
+        }
+  
         private static TokenInfo[] ReadTokens(IScanner scanner, string source)
         {
             scanner.SetSource(source, 0);
             return ReadTokens(scanner);
         }
+
         private static TokenInfo[] ReadTokens(IScanner scanner)
         {
             var state = 0;

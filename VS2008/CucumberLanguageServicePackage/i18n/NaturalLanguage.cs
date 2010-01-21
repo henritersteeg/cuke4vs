@@ -14,6 +14,7 @@ namespace CucumberLanguageServices.i18n
         public BnfTerm Steps { get; private set; }
 
         public readonly KeyTermList KeyTerms = new KeyTermList();
+        public readonly KeyTermList StepTerms = new KeyTermList();
 
         public NaturalLanguage(NaturalLanguageText languageText)
         {
@@ -23,14 +24,21 @@ namespace CucumberLanguageServices.i18n
             Scenario = CreateTerm("Scenario", languageText.Scenario + ":");
             ScenarioOutline = CreateTerm("Scenario Outline", languageText.ScenarioOutline + ":");
             Examples = CreateTerm("Examples", languageText.Examples + ":");
-            Steps = CreateTerm("Step", languageText.Step);
+            Steps = CreateTerm("Step", languageText.Step, true);
         }
 
         private BnfTerm CreateTerm(string name, string tokens)
         {
+            return CreateTerm(name, tokens, false);
+        }
+
+        private BnfTerm CreateTerm(string name, string tokens, bool areStepTerms)
+        {
             var tokenizer = new LanguageTokenizer { Name = name, Tokens = tokens };
             var token = tokenizer.CreateIronyToken();
             KeyTerms.AddRange(tokenizer.KeyTerms);
+            if (areStepTerms)
+                StepTerms.AddRange(tokenizer.KeyTerms);
             return token;
         }
 

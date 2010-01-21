@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using CucumberLanguageServices.Integration;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
@@ -29,6 +30,7 @@ namespace CucumberLanguageServicePackageTests
             Assert.That(matches, Has.Length(1));
             Assert.That(matches[0].Value, Is.EqualTo("^match\\d$"));
         }
+
     }
 
     public class StepProviderToTest : StepProvider

@@ -36,5 +36,11 @@ namespace CucumberLanguageServices.Integration
                 _valueRegex = new Regex(Value);
             return _valueRegex.IsMatch(stepIdentifier);
         }
+
+        public Match Match(string stepIdentifier)
+        {
+            return _valueRegex.Match(stepIdentifier);
+        }
+
     }
 }

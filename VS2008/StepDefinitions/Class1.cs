@@ -27,5 +27,8 @@ namespace StepDefinitions
 
         [Then("^\\d\"")]
         public void Escapes() {}
+
+        [Given("^My phone number is (\\d+) and my name is '(.*)'$")]
+        public void IAm(int phoneNumber, string name) { }
     }
 }
