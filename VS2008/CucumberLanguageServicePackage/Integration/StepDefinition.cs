@@ -15,6 +15,7 @@ namespace CucumberLanguageServices.Integration
         public TextPoint StartPoint { get; set; }
         public TextPoint EndPoint { get; set; }
         public CodeFunction Function { get; set; }
+        public string ClassName { get; set; }
 
         public bool IsPending
         {

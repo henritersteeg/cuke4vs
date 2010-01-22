@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.Package;
 using Microsoft.Samples.LinqToCodeModel.Extensions;
 using EnvDTE;
 
@@ -27,22 +24,31 @@ namespace CucumberLanguageServices.Integration
             if (item == null || item.FileCodeModel == null)
                 return;
 
-            lock(this)
+            foreach (var codeClass in item.FileCodeModel.GetIEnumerable<CodeClass>())
             {
-                RemoveAttributesFor(item);
+                ProcessItem(codeClass);
+            }
+        }
 
-                foreach (var attribute in item.FileCodeModel.GetIEnumerable<CodeAttribute>())
+        public void ProcessItem(CodeClass codeClass)
+        {
+            if (codeClass == null) return;
+            lock (this)
+            {
+                RemoveAttributesFor(codeClass.FullName);
+
+                foreach (var attribute in codeClass.GetIEnumerable<CodeAttribute>())
                 {
                     var parent = attribute.Parent as CodeElement;
 
                     Debug.Print("StepProvider: Add '{0}', parent='{1}'", attribute.Name, parent != null ? parent.Name : "<null>");
-                    
-                    AddStep(attribute);
+
+                    AddStep(attribute, codeClass.FullName);
                 }
             }
         }
 
-        private void AddStep(CodeAttribute attribute)
+        private void AddStep(CodeAttribute attribute, string className)
         {
             if (!STEP_ATTRIBUTES.Contains(attribute.FullName))
                 return;
@@ -52,7 +58,8 @@ namespace CucumberLanguageServices.Integration
                                          ProjectItem = attribute.ProjectItem,
                                          StartPoint = attribute.StartPoint,
                                          EndPoint = attribute.EndPoint,
-                                         Function = attribute.Parent as CodeFunction
+                                         Function = attribute.Parent as CodeFunction,
+                                         ClassName = className
                                      });
 
             Debug.Print("Attribute FullName={0}, Value={1}, Unescaped={4} at {2}:{3}",
@@ -62,7 +69,7 @@ namespace CucumberLanguageServices.Integration
 
         public StepDefinition[] FindMatchesFor(string stepIdentifier)
         {
-            lock(this)
+            lock (this)
             {
                 return _stepDefinitions.Where(step => step.Matches(stepIdentifier)).ToArray();
             }
@@ -77,16 +84,17 @@ namespace CucumberLanguageServices.Integration
         {
             get
             {
-                lock(this)
+                lock (this)
                 {
                     return _stepDefinitions.OrderBy(step => step.Value).ToList();
                 }
             }
         }
 
-        private void RemoveAttributesFor(ProjectItem projectItem)
+        private void RemoveAttributesFor(string className)
         {
-            _stepDefinitions.RemoveAll(step => step.ProjectItem == projectItem);
+            var result = _stepDefinitions.RemoveAll(step => step.ClassName == className);
+            Debug.Print("StepProvider: Removed {0} steps for {1}", result, className);
         }
 
         private static string Unescape(string value)

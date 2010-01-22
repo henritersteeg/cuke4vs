@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using CucumberLanguageServices.Integration;
+using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -33,6 +34,13 @@ namespace CucumberLanguageServices
                                     StepProvider = _stepProvider
                                 };
             processor.Process();
+
+            var codeMonitor = new CodeModelEventMonitor
+                                  {
+                                      DTE = GetService(typeof (DTE)) as DTE,
+                                      StepProvider = _stepProvider
+                                  };
+            codeMonitor.MonitorChanges();
         }
 
         public override Colorizer GetColorizer(IVsTextLines buffer)

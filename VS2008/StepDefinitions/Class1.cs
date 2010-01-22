@@ -33,5 +33,8 @@ namespace StepDefinitions
 
         [Given("say '(.*)'"), Pending]
         public void Say(string text) { }
+
+        [When("bla")]
+        public void Bla() { }
     }
 }

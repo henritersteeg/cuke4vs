@@ -36,6 +36,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>c:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
     </Reference>
+    <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>c:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE80.dll</HintPath>
+    </Reference>
     <Reference Include="Irony, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Irony.dll</HintPath>
@@ -76,6 +80,7 @@
     <Compile Include="i18n\LanguageTokenizer.cs" />
     <Compile Include="i18n\NaturalLanguageFactory.cs" />
     <Compile Include="Integration\AuthoringScope.cs" />
+    <Compile Include="Integration\CodeModelEventMonitor.cs" />
     <Compile Include="Integration\Configuration.cs" />
     <Compile Include="Integration\Declaration.cs" />
     <Compile Include="Integration\Declarations.cs" />

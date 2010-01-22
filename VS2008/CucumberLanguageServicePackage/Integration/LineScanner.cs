@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio.Package;
 using Irony.Parsing;
@@ -22,7 +19,7 @@ namespace CucumberLanguageServices
 
         public LineScanner(GherkinGrammar GherkinGrammar)
         {
-            Debug.Print("LineScanner constructed using {0}", GherkinGrammar);
+            //Debug.Print("LineScanner constructed using {0}", GherkinGrammar);
             _grammar = GherkinGrammar;
             SetParser(GherkinGrammar);
         }
@@ -70,7 +67,7 @@ namespace CucumberLanguageServices
 
         private bool Returning(TokenInfo tokenInfo, int state, Token token, bool returnValue)
         {
-            Debug.Print("LineScanner.ScanToken({1}) => {2} ({0})", TokenInfo(tokenInfo, token), state, returnValue);
+            //Debug.Print("LineScanner.ScanToken({1}) => {2} ({0})", TokenInfo(tokenInfo, token), state, returnValue);
             _previousToken = token;
             return returnValue;
         }
@@ -154,7 +151,7 @@ namespace CucumberLanguageServices
                 (Microsoft.VisualStudio.Package.TokenTriggers)editorInfo.Triggers;
         }
 
-        private void SetColorAndType(Token token, TokenInfo tokenInfo)
+        private static void SetColorAndType(Token token, TokenInfo tokenInfo)
         {
             var editorInfo = token.EditorInfo ?? DEFAULT_EDITOR_INFO;
 
@@ -166,7 +163,7 @@ namespace CucumberLanguageServices
         public void SetSource(string source, int offset)
         {
             // Stores line of source to be used by ScanTokenAndProvideInfoAboutIt.
-            Debug.Print("LineScanner.SetSource({0},{1})", source, offset);
+            //Debug.Print("LineScanner.SetSource({0},{1})", source, offset);
             _parser.Scanner.VsSetSource(source, offset);
         }
     }
