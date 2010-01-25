@@ -1,4 +1,6 @@
-﻿using EnvDTE;
+﻿using System;
+using System.Diagnostics;
+using EnvDTE;
 using Microsoft.VisualStudio.Shell.Interop;
 using ProductivityPackage;
 
@@ -9,10 +11,13 @@ namespace CucumberLanguageServices.Integration
         public StepProvider StepProvider { get; set; }
         public IVsSolution Solution { get; set; }
 
+        private System.Threading.Thread _thread;
+        private bool _stopProcessing;
+
         public void Process()
         {
-            var thread = new System.Threading.Thread(Run);
-            thread.Start();
+            _thread = new System.Threading.Thread(Run);
+            _thread.Start();
         }
 
         private void Run()
@@ -27,7 +32,18 @@ namespace CucumberLanguageServices.Integration
                 if (projectItem.Kind != EnvDTE.Constants.vsProjectItemKindPhysicalFile)
                     continue;
                 StepProvider.ProcessItem(projectItem);
+                if (_stopProcessing)
+                    break;
             }
+            Debug.Print("SolutionProcessor.Run() is READY!");
+        }
+
+        public void Stop()
+        {
+            if (_thread == null) return;
+
+            _stopProcessing = true;
+            _thread.Join();
         }
     }
 }

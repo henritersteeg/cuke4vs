@@ -94,6 +94,7 @@
     <Compile Include="Integration\Package.cs" />
     <Compile Include="Integration\RegionCreator.cs" />
     <Compile Include="Integration\Resolver.cs" />
+    <Compile Include="Integration\SolutionEventMonitor.cs" />
     <Compile Include="Integration\SolutionProcessor.cs" />
     <Compile Include="Integration\Source.cs" />
     <Compile Include="Integration\StepDefinition.cs" />

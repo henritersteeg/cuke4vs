@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -106,6 +107,14 @@ namespace CucumberLanguageServices.Integration
                 return value;
 
             return Regex.Unescape(value.Substring(1, value.Length - 2));
+        }
+
+        public void Clear()
+        {
+            lock(this)
+            {
+                _stepDefinitions.Clear();
+            }
         }
     }
 }

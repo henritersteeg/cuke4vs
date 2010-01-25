@@ -20,6 +20,8 @@ namespace CucumberLanguageServices
         private Parser parser;
         private readonly StepProvider _stepProvider = new StepProvider();
 
+        private bool _initialized;
+
         public IronyLanguageService()
         {
             InitParser(string.Empty);
@@ -28,12 +30,16 @@ namespace CucumberLanguageServices
         public override void Initialize()
         {
             base.Initialize();
-            var processor = new SolutionProcessor
-                                {
-                                    Solution = GetService(typeof (SVsSolution)) as IVsSolution,
-                                    StepProvider = _stepProvider
-                                };
-            processor.Process();
+            if (_initialized) return;  // Initialize() is called twice...
+
+            var solutionMonitor = new SolutionEventMonitor
+                                        {
+                                            StepProvider = _stepProvider,
+                                            Solution = GetService(typeof(SVsSolution)) as IVsSolution
+                                        };
+
+            solutionMonitor.ProcessSolution(); // Since the current solution is already open...
+            solutionMonitor.MonitorChanges();
 
             var codeMonitor = new CodeModelEventMonitor
                                   {
@@ -41,6 +47,7 @@ namespace CucumberLanguageServices
                                       StepProvider = _stepProvider
                                   };
             codeMonitor.MonitorChanges();
+            _initialized = true;
         }
 
         public override Colorizer GetColorizer(IVsTextLines buffer)
