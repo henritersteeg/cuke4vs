@@ -22,7 +22,7 @@ namespace CucumberLanguageServices.i18n
         {
             return new KeyTerm(token, Name)
                                 {
-                                    Options = TermOptions.IsReservedWord,
+                                    Flags = TermFlags.IsReservedWord,
                                     EditorInfo = new TokenEditorInfo(TokenType.Keyword, TokenColor.Keyword, TokenTriggers.None)
                                 };
         }

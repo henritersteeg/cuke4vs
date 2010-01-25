@@ -23,7 +23,7 @@ namespace CucumberLanguageServices.Integration
 
         protected override void Visit(ParseTreeNode node)
         {
-            var stepIdentifier = node.FindFirstChildToken();
+            var stepIdentifier = node.FindToken();
             if (stepIdentifier == null || stepIdentifier.Terminal != Grammar.Identifier)
                 return;
             var stepLocation = stepIdentifier.Location;

@@ -38,7 +38,7 @@ namespace CucumberLanguageServices
         private readonly NonTerminal Identifiers = new NonTerminal("identifiers");
         private readonly NonTerminal MultilineArg = new NonTerminal("multiline-arg");
 
-        public readonly StringLiteral PyString = new StringLiteral("py-string", "\"\"\"", StringFlags.AllowsAllEscapes | StringFlags.AllowsLineBreak);
+        public readonly StringLiteral PyString = new StringLiteral("py-string", "\"\"\"", StringOptions.AllowsAllEscapes | StringOptions.AllowsLineBreak);
         private readonly NonTerminal Table = new NonTerminal("table");
         private readonly NonTerminal TableHeader = new NonTerminal("table-header");
         private readonly NonTerminal ColumnNames = new NonTerminal("column-names");

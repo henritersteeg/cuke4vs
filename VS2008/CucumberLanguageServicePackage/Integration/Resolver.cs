@@ -21,7 +21,7 @@ namespace CucumberLanguageServices
             // Add keywords defined by grammar
             foreach (KeyTerm key in grammar.KeyTerms.Values)
             {
-                if (key.OptionIsSet(TermOptions.IsKeyword))
+                if (key.FlagIsSet(TermFlags.IsKeyword))
                 {
                     declarations.Add(new Declaration(key.Name, key.Text, 206, key.Text));
                 }
