@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Cucumber Language Service (VS 2008) v0.2.3" Language="1033" Version="0.2.3" Manufacturer="Henri ter Steeg" UpgradeCode="4A263005-A34C-4410-8B39-A82D08D7A0A9">
+  <Product Id="*" Name="Cucumber Language Service (VS 2008) v0.2.4" Language="1033" Version="0.2.4" Manufacturer="Henri ter Steeg" UpgradeCode="4A263005-A34C-4410-8B39-A82D08D7A0A9">
     <Package InstallerVersion="200" Compressed="yes" />
 
     <Media Id="1" Cabinet="data.cab" EmbedCab="yes" />
@@ -8,7 +8,7 @@
     <!-- Upgrade support -->
     <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
     <Upgrade Id="4A263005-A34C-4410-8B39-A82D08D7A0A9">
-      <UpgradeVersion Minimum="0.0.0" Maximum="0.2.3" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
+      <UpgradeVersion Minimum="0.0.0" Maximum="0.2.4" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
     </Upgrade>
     <!-- end upgrade support -->
 
@@ -32,13 +32,35 @@
                 </Extension>
               </ProgId>
               <Registry Id='CucumberIcon1' Root='HKCR' Key='.feature' Action='write'
-  Type='string' Value='CucumberScript.feature' />
-              <Registry Id='CucumberIcon2' Root='HKCR' Key='CucumberScript.feature' Action='write'
+  Type='string' Value='Cucumber.feature' />
+              <Registry Id='CucumberIcon2' Root='HKCR' Key='Cucumber.feature' Action='write'
                 Type='string' Value='Cucumber script' />
-              <Registry Id='CucumberIcon3' Root='HKCR' Key='CucumberScript.feature\DefaultIcon' Action='write'
+              <Registry Id='CucumberIcon3' Root='HKCR' Key='Cucumber.feature\DefaultIcon' Action='write'
   Type='string' Value='[INSTALLLOCATION]Cucumber.ico' />
             </Component>
 
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="VS90_ROOT_FOLDER">
+        <Directory Id="Common7" Name="Common7">
+          <Directory Id="IDE" Name="IDE">
+            <Directory Id="ItemTemplates" Name="ItemTemplates">
+              <Directory Id="CSharp" Name="CSharp">
+                <Directory Id="X1033" Name="1033">
+                  <Component Id="VS9CSharpItemsComponent" Guid="362BCED2-E703-4318-A058-7C076BB12FF2">
+                    <File Id="CSharpZip" Source="$(var.OUTPUTDIR)\Cucumber.zip" />
+                  </Component>
+                </Directory>
+                <Directory Id="General" Name="General">
+                  <Directory Id="C1033" Name="1033">
+                    <Component Id="VS9ScriptItemsComponent" Guid="F9969D0B-69C5-4298-B5D4-2FF939BF49ED">
+                      <File Id="GeneralZip" Source="$(var.OUTPUTDIR)\Cucumber.zip" />
+                    </Component>
+                  </Directory>
+                </Directory>
+              </Directory>
+            </Directory>
           </Directory>
         </Directory>
       </Directory>
@@ -46,6 +68,8 @@
 
     <Feature Id="ProductFeature" Title="Cucumber Editor for Visual Studio 2008" Level="1" AllowAdvertise="no" Absent="disallow">
       <ComponentRef Id="ComponentPath" />
+      <ComponentRef Id="VS9CSharpItemsComponent"/>
+      <ComponentRef Id="VS9ScriptItemsComponent"/>
     </Feature>
     <Feature Id="AssociateCucumberFiles" Title="Associate Cucumber Files" Description="Associate Cucumber files with Visual Studio" Level="1" AllowAdvertise="no">
       <ComponentRef Id="AssociateCucumberFiles"/>
@@ -56,10 +80,8 @@
     <PropertyRef Id="VS90_ROOT_FOLDER" />
     <CustomActionRef Id="VS90Setup"/>
     <UIRef Id="WixUI_FeatureTree" />
-    <!--
     <Icon Id="Cucumber.ico" SourceFile="Cucumber.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Cucumber.ico" />
-    -->
     <InstallExecuteSequence>
       <RemoveExistingProducts Before="InstallInitialize" />
       <Custom Action="VS90Setup" After="InstallFiles"/>
