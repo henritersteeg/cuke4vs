@@ -38,7 +38,7 @@ namespace CucumberLanguageServicePackageTests
 
         protected int ScenarioOutlineCount(TokenList tokens)
         {
-            return tokens.Where(token => token.Terminal.Name == "Scenario Outline").Count();
+            return tokens.Where(token => token.Terminal.Name == "ScenarioOutline").Count();
         }
 
         protected int ExamplesCount(TokenList tokens)

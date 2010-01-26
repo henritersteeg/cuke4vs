@@ -19,25 +19,20 @@ namespace CucumberLanguageServices.i18n
         public NaturalLanguage(NaturalLanguageText languageText)
         {
             Code = languageText.Code;
-            Feature = CreateTerm("Feature", languageText.Feature + ":");
-            Background = CreateTerm("Background", languageText.Background + ":");
-            Scenario = CreateTerm("Scenario", languageText.Scenario + ":");
-            ScenarioOutline = CreateTerm("Scenario Outline", languageText.ScenarioOutline + ":");
-            Examples = CreateTerm("Examples", languageText.Examples + ":");
-            Steps = CreateTerm("Step", languageText.Step, true);
+            Feature = CreateTerm(GherkinTerm.Feature, languageText.Feature + ":");
+            Background = CreateTerm(GherkinTerm.Background, languageText.Background + ":");
+            Scenario = CreateTerm(GherkinTerm.Scenario, languageText.Scenario + ":");
+            ScenarioOutline = CreateTerm(GherkinTerm.ScenarioOutline, languageText.ScenarioOutline + ":");
+            Examples = CreateTerm(GherkinTerm.Examples, languageText.Examples + ":");
+            Steps = CreateTerm(GherkinTerm.Step, languageText.Step);
         }
 
-        private BnfTerm CreateTerm(string name, string tokens)
+        private BnfTerm CreateTerm(GherkinTerm term, string tokens)
         {
-            return CreateTerm(name, tokens, false);
-        }
-
-        private BnfTerm CreateTerm(string name, string tokens, bool areStepTerms)
-        {
-            var tokenizer = new LanguageTokenizer { Name = name, Tokens = tokens };
+            var tokenizer = new LanguageTokenizer { Term = term, Tokens = tokens };
             var token = tokenizer.CreateIronyToken();
             KeyTerms.AddRange(tokenizer.KeyTerms);
-            if (areStepTerms)
+            if (term == GherkinTerm.Step)
                 StepTerms.AddRange(tokenizer.KeyTerms);
             return token;
         }

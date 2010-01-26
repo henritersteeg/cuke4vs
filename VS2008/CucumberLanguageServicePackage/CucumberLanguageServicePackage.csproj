@@ -74,6 +74,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cuke4vs.resx</DependentUpon>
     </Compile>
+    <Compile Include="i18n\GherkinKeyTerm.cs" />
+    <Compile Include="i18n\GherkinTerm.cs" />
     <Compile Include="i18n\NaturalLanguage.cs" />
     <Compile Include="i18n\NaturalLanguageText.cs" />
     <Compile Include="Guids.cs" />

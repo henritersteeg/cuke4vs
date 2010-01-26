@@ -8,7 +8,7 @@ namespace CucumberLanguageServices.i18n
 {
     public class LanguageTokenizer
     {
-        public string Name { get; set; }
+        public GherkinTerm Term { get; set; }
         public string Tokens { get; set; }
         public KeyTerm[] KeyTerms { get; set; }
 
@@ -20,16 +20,16 @@ namespace CucumberLanguageServices.i18n
 
         private KeyTerm CreateKeyTerm(string token)
         {
-            return new KeyTerm(token, Name)
+            return new GherkinKeyTerm(Term, token)
                                 {
                                     Flags = TermFlags.IsReservedWord,
-                                    EditorInfo = new TokenEditorInfo(TokenType.Keyword, TokenColor.Keyword, TokenTriggers.None)
+                                    EditorInfo = new TokenEditorInfo(TokenType.Keyword, TokenColor.Keyword, TokenTriggers.None) {}
                                 };
         }
 
         public NonTerminal CreateIronyToken()
         {
-            var result = new NonTerminal(Name);
+            var result = new NonTerminal(Term.ToString());
             foreach (var keyTerm in CreateKeyTerms())
             {
                 if (result.Rule == null)

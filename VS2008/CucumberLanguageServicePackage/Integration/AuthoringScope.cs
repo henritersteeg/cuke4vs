@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using CucumberLanguageServices.i18n;
 using CucumberLanguageServices.Integration;
 using Irony.Ast;
 using Irony.Parsing;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Package;
+using TokenType=Irony.Parsing.TokenType;
 
 namespace CucumberLanguageServices
 {
@@ -43,8 +45,14 @@ namespace CucumberLanguageServices
             switch (reason)
             {
                 case ParseReason.CompleteWord:
-                    declarations = resolver.FindCompletions(StepProvider, Grammar, line, col);
+                    var tokenInfo = GetTokenInfoOfFirstTokenOnLine(view, line, col);
+
+                    if (tokenInfo.Token == (int)GherkinTerm.Step)
+                        declarations = resolver.FindMembers(StepProvider, Grammar, line, col);
+                    else
+                        declarations = resolver.FindCompletions(StepProvider, Grammar, line, col);
                     break;
+
                 case ParseReason.DisplayMemberList:
                 case ParseReason.MemberSelect:
                 case ParseReason.MemberSelectAndHighlightBraces:
@@ -57,6 +65,18 @@ namespace CucumberLanguageServices
             return new Declarations(declarations);
         }
 
+        private TokenInfo GetTokenInfoOfFirstTokenOnLine(IVsTextView view, int line, int col)
+        {
+            string source;
+            view.GetTextStream(line, 0, line, col, out source);
+            var scanner = new LineScanner(Grammar);
+            scanner.SetSource(source, 0);
+            var tokenInfo = new TokenInfo(0,0,Microsoft.VisualStudio.Package.TokenType.Unknown);
+            int state = 0;
+            scanner.ScanTokenAndProvideInfoAboutIt(tokenInfo, ref state);
+            return tokenInfo;
+        }
+
         // ParseReason.GetMethods
         public override Microsoft.VisualStudio.Package.Methods GetMethods(int line, int col, string name)
         {
@@ -66,7 +86,7 @@ namespace CucumberLanguageServices
         // ParseReason.Goto
         public override string Goto(VSConstants.VSStd97CmdID cmd, IVsTextView textView, int line, int col, out TextSpan span)
         {
-            switch(cmd)
+            switch (cmd)
             {
                 case VSConstants.VSStd97CmdID.GotoDecl:
                 case VSConstants.VSStd97CmdID.GotoDefn:

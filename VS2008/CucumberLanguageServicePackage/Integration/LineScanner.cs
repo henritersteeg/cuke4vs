@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CucumberLanguageServices.i18n;
 using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio.Package;
 using Irony.Parsing;
@@ -47,6 +48,11 @@ namespace CucumberLanguageServices
             {
                 tokenInfo.StartIndex = token.Location.Position;
                 tokenInfo.EndIndex = tokenInfo.StartIndex + token.Length - 1;
+
+                var gherkinKeyTerm = token.KeyTerm as GherkinKeyTerm;
+                if (gherkinKeyTerm != null)
+                    tokenInfo.Token = (int)gherkinKeyTerm.Term;
+
                 SetColorAndType(token, tokenInfo);
                 SetTrigger(token, tokenInfo);
                 ProcessStepIdentifiers(token, tokenInfo);
@@ -63,6 +69,7 @@ namespace CucumberLanguageServices
             tokenInfo.Color = queuedToken.Color;
             tokenInfo.Trigger = queuedToken.Trigger;
             tokenInfo.Type = queuedToken.Type;
+            tokenInfo.Token = queuedToken.Token;
         }
 
         private bool Returning(TokenInfo tokenInfo, int state, Token token, bool returnValue)
