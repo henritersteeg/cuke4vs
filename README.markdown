@@ -11,15 +11,9 @@ Go to the download section, install the latest MSI and you're done!
 For some reason, the installation progress seems to halt for about 30 seconds, but after that it's ready instantly.
 
 ### Examples
-Syntax highlighting for the Cuke4Nuke WatiN example:
-![Syntax highlighting](http://github.com/henritersteeg/cuke4vs/raw/master/doc/screenshots/syntax.png "Syntax highlighting")
-
-Intellisense (Ctrl-Space) for Cucumber keywords:
-![Jump to definition](http://github.com/henritersteeg/cuke4vs/raw/master/doc/screenshots/keywords.png "Show keywords")
-
-Intellisense (Ctrl-Space) for step definitions:
+####Intellisense (Ctrl-Space) for Cucumber keywords or step definitions:
 ![Jump to definition](http://github.com/henritersteeg/cuke4vs/raw/master/doc/screenshots/steps.png "Show steps")
 
-Jump to step definition (F12):
+####Jump to step definition (F12):
 ![Jump to definition](http://github.com/henritersteeg/cuke4vs/raw/master/doc/screenshots/definition.png "Jump to step definition")
 
