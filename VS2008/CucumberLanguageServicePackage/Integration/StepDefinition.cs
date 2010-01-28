@@ -1,16 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using EnvDTE;
-using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CucumberLanguageServices.Integration
 {
     public class StepDefinition
     {
+        class Replacement
+        {
+            public string Old;
+            public string New;
+
+            public Replacement By(string newValue)
+            {
+                New = newValue;
+                return this;
+            }
+        }
+
+        private static readonly Replacement[] REPLACEMENTS = new[]
+                                                        {
+                                                            Replace("(.*)").By(".."),
+                                                            Replace("(.+)").By(".."),
+                                                            Replace("(\\d+)").By("0"),
+                                                            Replace("(\\d*)").By("0"),
+                                                        };
+        
+        private static Replacement Replace(string oldValue)
+        {
+            return new Replacement {Old = oldValue};
+        }
+
         public string Value { get; private set; }
+        public string Name { get; private set; }
         public ProjectItem ProjectItem { get; set; }
         public TextPoint StartPoint { get; set; }
         public TextPoint EndPoint { get; set; }
@@ -38,12 +59,30 @@ namespace CucumberLanguageServices.Integration
         public StepDefinition(string value)
         {
             Value = value;
+            Name = CreateNameFor(value);
+        }
+
+        private static string CreateNameFor(string value)
+        {
+            var result = value;
+
+            if (result.StartsWith("^"))
+                result = result.Substring(1);
+
+            if (result.EndsWith("$"))
+                result = result.Substring(0, result.Length - 1);
+
+            foreach (var replacement in REPLACEMENTS)
+            {
+                result = result.Replace(replacement.Old, replacement.New);
+            }
+            return result;
         }
 
         public override string ToString()
         {
-            return string.Format("Step[{0}] in {1}, offset {2}", 
-                                 Value, 
+            return string.Format("Step[{0}] in {1}, offset {2}",
+                                 Value,
                                  (ProjectItem != null ? ProjectItem.Name : "<unknown>"),
                                  StartPoint.AbsoluteCharOffset);
         }

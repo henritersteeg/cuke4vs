@@ -38,7 +38,7 @@ namespace CucumberLanguageServices
 
             foreach (var step in stepProvider.StepDefinitions)
             {
-                members.Add(new Declaration(step.Value, step.Value, 18 /* Method */, step.Value));
+                members.Add(new Declaration(step.Value, step.Value, 18 /* Method */, step.Name));
             }
             return members;
         }

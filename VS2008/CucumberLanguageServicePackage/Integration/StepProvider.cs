@@ -98,15 +98,26 @@ namespace CucumberLanguageServices.Integration
             Debug.Print("StepProvider: Removed {0} steps for {1}", result, className);
         }
 
-        private static string Unescape(string value)
+        public static string Unescape(string value)
         {
             if (string.IsNullOrEmpty(value) || value.Length < 2)
                 return value;
 
-            if (value[0] != '"' || value[value.Length - 1] != '"')
-                return value;
+            var unescape = true;
+            var result = value;
 
-            return Regex.Unescape(value.Substring(1, value.Length - 2));
+            if (result[0] == '@')
+            {
+                result = result.Substring(1);
+                unescape = false;
+            }
+
+            if (result[0] != '"' || result[result.Length - 1] != '"')
+                return result;
+
+            result = result.Substring(1, result.Length - 2);
+            
+            return unescape ? Regex.Unescape(result) : result;
         }
 
         public void Clear()

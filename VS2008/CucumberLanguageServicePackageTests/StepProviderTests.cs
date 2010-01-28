@@ -31,6 +31,18 @@ namespace CucumberLanguageServicePackageTests
             Assert.That(matches[0].Value, Is.EqualTo("^match\\d$"));
         }
 
+        [Test]
+        public void Should_not_unescape_string_if_it_start_with_an_at_sign()
+        {
+            // Given
+            const string string_with_at_sign = "@\"c:\\bla\"";
+
+            // When
+            var result = StepProvider.Unescape(string_with_at_sign);
+
+            // Then
+            Assert.That(result, Is.EqualTo("c:\\bla"));
+        }
     }
 
     public class StepProviderToTest : StepProvider
