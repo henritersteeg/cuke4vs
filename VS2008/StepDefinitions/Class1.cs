@@ -8,7 +8,6 @@ namespace StepDefinitions
 {
     public class Class1
     {
-        [NotNull]
         public void Test() 
         {
         }

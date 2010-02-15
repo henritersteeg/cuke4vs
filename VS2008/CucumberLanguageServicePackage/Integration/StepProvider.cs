@@ -13,7 +13,10 @@ namespace CucumberLanguageServices.Integration
         public static readonly string[] STEP_ATTRIBUTES = {
                                                                "Cuke4Nuke.Framework.GivenAttribute",
                                                                "Cuke4Nuke.Framework.WhenAttribute",
-                                                               "Cuke4Nuke.Framework.ThenAttribute"
+                                                               "Cuke4Nuke.Framework.ThenAttribute",
+                                                               "TechTalk.SpecFlow.GivenAttribute",
+                                                               "TechTalk.SpecFlow.WhenAttribute",
+                                                               "TechTalk.SpecFlow.ThenAttribute",
                                                            };
 
         public static readonly string PENDING_ATTRIBUTE = "Cuke4Nuke.Framework.PendingAttribute";
