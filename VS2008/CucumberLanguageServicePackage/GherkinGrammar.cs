@@ -146,7 +146,7 @@ namespace CucumberLanguageServices
 
             BackgroundLine.Rule = Language.Background + Identifiers;
 
-            Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioWithTags | ScenarioOutlineClause));
+            Scenarios.Rule = MakeStarRule(Scenarios, (ScenarioWithTags | ScenarioOutlineWithTags));
 
             ScenarioOutlineWithTags.Rule = Tags + ScenarioOutlineClause;
 

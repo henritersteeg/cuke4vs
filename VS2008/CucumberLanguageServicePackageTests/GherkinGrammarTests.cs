@@ -199,5 +199,43 @@ namespace CucumberLanguageServicePackageTests
             Assert.That(BackgroundCount(tokens), Is.EqualTo(1), "Background");
             Assert.That(StepCount(tokens), Is.EqualTo(6), "Given/When/Then");
         }
+
+        [Test]
+        public void Should_be_able_to_add_a_tag_to_ScenarioOutline()
+        {
+            // When
+            var parseTree = _parser.Parse(FEATURE_LINE + "\n" +
+                                          "@mytag\n" +
+                                          "Scenario Outline: Gutter game template\n" +
+                                          "  Given there is something <value>\n" +
+                                          "Examples:\n" +
+                                          "  |value|\n" +
+                                          "  |1 |\n" +
+                                          "  |2 |\n"
+                );
+
+            // Then
+            var tokens = parseTree.Tokens;
+            AssertNoError(tokens);
+        }
+
+        [Test]
+        public void Should_be_able_to_use_scenarios_instead_of_examples()
+        {
+            // When
+            var parseTree = _parser.Parse(FEATURE_LINE + "\n" +
+                                          "@mytag\n" +
+                                          "Scenario Outline: Gutter game template\n" +
+                                          "  Given there is something <value>\n" +
+                                          "Scenarios:\n" +
+                                          "  |value|\n" +
+                                          "  |1 |\n" +
+                                          "  |2 |\n"
+                );
+
+            // Then
+            var tokens = parseTree.Tokens;
+            AssertNoError(tokens);
+        }
     }
 }

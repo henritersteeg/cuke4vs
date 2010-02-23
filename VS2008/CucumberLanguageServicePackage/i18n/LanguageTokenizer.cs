@@ -11,10 +11,11 @@ namespace CucumberLanguageServices.i18n
         public GherkinTerm Term { get; set; }
         public string Tokens { get; set; }
         public KeyTerm[] KeyTerms { get; set; }
+        public string PostFix { get; set; }
 
         public KeyTerm[] CreateKeyTerms()
         {
-            KeyTerms = Tokens != null ? Tokens.Split('|').Distinct().Select(token => CreateKeyTerm(token)).ToArray() : new KeyTerm[] { };
+            KeyTerms = Tokens != null ? Tokens.Split('|').Distinct().Select(token => CreateKeyTerm(token + PostFix)).ToArray() : new KeyTerm[] { };
             return KeyTerms;
         }
 

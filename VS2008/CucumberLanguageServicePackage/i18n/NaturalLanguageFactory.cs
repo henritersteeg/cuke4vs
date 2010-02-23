@@ -16,7 +16,7 @@ namespace CucumberLanguageServices.i18n
                                                                                               Background = "Background",
                                                                                               Scenario = "Scenario",
                                                                                               ScenarioOutline = "Scenario Outline",
-                                                                                              Examples = "Examples",
+                                                                                              Examples = "Examples|Scenarios",
                                                                                               Given = "*|Given",
                                                                                               When = "*|When",
                                                                                               Then = "*|Then",

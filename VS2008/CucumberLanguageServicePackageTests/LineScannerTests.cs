@@ -28,7 +28,7 @@ namespace CucumberLanguageServicePackageTests
             // Then
             Assert.That(tokens, Has.Length(2), "Feature and Identifier expected");
             Assert.That(tokens[0].Type, Is.EqualTo(TokenType.Keyword), "Feature");
-            Assert.That(tokens[1].Type, Is.EqualTo(TokenType.Literal), "Identifier");
+            Assert.That(tokens[1].Type, Is.EqualTo(TokenType.Identifier), "Identifier");
             Assert.That(tokens[0].StartIndex, Is.EqualTo(0), "Feature");
             Assert.That(tokens[1].StartIndex, Is.EqualTo(9), "Identifier");
         }
