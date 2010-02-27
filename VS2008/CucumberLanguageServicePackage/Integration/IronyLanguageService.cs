@@ -62,13 +62,13 @@ namespace CucumberLanguageServices
                 return;
             GherkinGrammar = GherkinGrammar.CreateFor(sourceText);
             parser = new Parser(GherkinGrammar);
-            if (scanner != null)
+            if (_scanner != null)
             {
-                scanner.SetParser(GherkinGrammar);
-                scanner.StepProvider = _stepProvider;
+                _scanner.SetParser(GherkinGrammar);
+                _scanner.StepProvider = _stepProvider;
             }
             else
-                scanner = new LineScanner(GherkinGrammar) { StepProvider = _stepProvider};
+                _scanner = new LineScanner(GherkinGrammar) { StepProvider = _stepProvider};
         }
 
         #region Custom Colors
@@ -110,14 +110,14 @@ namespace CucumberLanguageServices
             return new Source(this, buffer, GetColorizer(buffer));
         }
 
-        private LineScanner scanner;
+        private LineScanner _scanner;
 
         public override IScanner GetScanner(IVsTextLines buffer)
         {
-            if (scanner == null)
-                scanner = new LineScanner(GherkinGrammar);
+            if (_scanner == null)
+                _scanner = new LineScanner(GherkinGrammar);
 
-            return scanner;
+            return _scanner;
         }
         #endregion
 
@@ -154,6 +154,9 @@ namespace CucumberLanguageServices
 
                     if (parseTree.Root == null)
                         return null;
+                    
+                    if (_scanner != null)
+                        _scanner.LatestParseTree = parseTree;
 
                     root = parseTree.Root;
                     var node = (AstNode)parseTree.Root.AstNode;

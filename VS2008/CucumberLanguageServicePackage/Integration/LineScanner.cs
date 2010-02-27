@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using CucumberLanguageServices.i18n;
 using CucumberLanguageServices.Integration;
 using Microsoft.VisualStudio.Package;
@@ -12,9 +13,12 @@ namespace CucumberLanguageServices
     public class LineScanner : IScanner
     {
         private static readonly TokenEditorInfo DEFAULT_EDITOR_INFO = new TokenEditorInfo(TokenType.Text, TokenColor.Text, TokenTriggers.None);
+        
+        public StepProvider StepProvider { get; set; }
+        public ParseTree LatestParseTree { get; set; }
+
         private GherkinGrammar _grammar;
         private Parser _parser;
-        public StepProvider StepProvider { get; set; }
         private Token _previousToken;
         private Queue<TokenInfo> _queuedTokens = new Queue<TokenInfo>();
 
@@ -99,6 +103,11 @@ namespace CucumberLanguageServices
                 SetIdentifierColorAndType(tokenInfo, stepDefinition);
                 return;
             }
+            ProcessStepIdentifierParameters(tokenInfo, stepDefinition, groups);
+        }
+
+        private void ProcessStepIdentifierParameters(TokenInfo tokenInfo, StepDefinition stepDefinition, GroupCollection groups)
+        {
             var lastEndIndex = tokenInfo.StartIndex - 1;
             for (var i=1; i < groups.Count; i++)
             {
@@ -118,7 +127,7 @@ namespace CucumberLanguageServices
             }
             if (lastEndIndex < tokenInfo.EndIndex)
                 QueueIdentifierToken(stepDefinition, lastEndIndex + 1, tokenInfo.EndIndex);
-            UpdateTokenInfoFromQueue(tokenInfo);            
+            UpdateTokenInfoFromQueue(tokenInfo);
         }
 
         private static void SetIdentifierColorAndType(TokenInfo tokenInfo, StepDefinition stepDefinition)
